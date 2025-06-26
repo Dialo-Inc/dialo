@@ -108,12 +108,14 @@ export class VapiService {
       // Request microphone permission first
       await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      // Use a demo assistant ID if none provided
-      const defaultAssistantId = assistantId || 'demo-dealership-agent';
+      // Use the correct parameter structure for Vapi SDK
+      const callConfig = assistantId ? {
+        assistant: assistantId
+      } : {
+        assistant: 'demo-dealership-agent'
+      };
       
-      await this.vapi.start({
-        assistantId: defaultAssistantId,
-      });
+      await this.vapi.start(callConfig);
     } catch (error) {
       console.error('Failed to start call:', error);
       throw new Error('Failed to start voice call. Please check microphone permissions.');

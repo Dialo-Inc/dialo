@@ -15,6 +15,7 @@ export class VapiService {
   private audioLevelCallback?: (level: number) => void;
   private startTime: number = 0;
   private durationInterval?: NodeJS.Timeout;
+  private isConnected: boolean = false;
   
   constructor() {
     // Using your actual Vapi public key
@@ -24,6 +25,8 @@ export class VapiService {
 
   private setupEventListeners() {
     this.vapi.on('call-start', () => {
+      console.log('Vapi call started');
+      this.isConnected = true;
       this.startTime = Date.now();
       this.startDurationTimer();
       this.callStateCallback?.({
@@ -35,6 +38,8 @@ export class VapiService {
     });
 
     this.vapi.on('call-end', () => {
+      console.log('Vapi call ended');
+      this.isConnected = false;
       this.stopDurationTimer();
       this.callStateCallback?.({
         isConnected: false,
@@ -45,6 +50,7 @@ export class VapiService {
     });
 
     this.vapi.on('speech-start', () => {
+      console.log('Speech started');
       this.callStateCallback?.({
         isConnected: true,
         isListening: true,
@@ -54,6 +60,7 @@ export class VapiService {
     });
 
     this.vapi.on('speech-end', () => {
+      console.log('Speech ended');
       this.callStateCallback?.({
         isConnected: true,
         isListening: false,
@@ -63,6 +70,7 @@ export class VapiService {
     });
 
     this.vapi.on('message', (message) => {
+      console.log('Vapi message received:', message);
       if (message.type === 'transcript' && message.transcriptType === 'final') {
         // Handle final transcript if needed
       }
@@ -70,25 +78,37 @@ export class VapiService {
 
     this.vapi.on('error', (error) => {
       console.error('Vapi error:', error);
+      this.isConnected = false;
+      this.stopDurationTimer();
+      
+      let errorMessage = 'Connection failed';
+      if (error && typeof error === 'object') {
+        errorMessage = error.message || error.toString() || 'Connection failed';
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      }
+      
       this.callStateCallback?.({
         isConnected: false,
         isListening: false,
         isSpeaking: false,
         duration: 0,
-        error: error.message || 'Connection failed'
+        error: errorMessage
       });
     });
   }
 
   private startDurationTimer() {
     this.durationInterval = setInterval(() => {
-      const currentState = {
-        isConnected: true,
-        isListening: false,
-        isSpeaking: false,
-        duration: this.getCurrentDuration()
-      };
-      this.callStateCallback?.(currentState);
+      if (this.isConnected) {
+        const currentState = {
+          isConnected: true,
+          isListening: false,
+          isSpeaking: false,
+          duration: this.getCurrentDuration()
+        };
+        this.callStateCallback?.(currentState);
+      }
     }, 1000);
   }
 
@@ -105,22 +125,45 @@ export class VapiService {
 
   async startCall(assistantId?: string): Promise<void> {
     try {
+      console.log('Starting Vapi call with assistant:', assistantId);
+      
       // Request microphone permission first
       await navigator.mediaDevices.getUserMedia({ audio: true });
+      console.log('Microphone permission granted');
       
-      // Pass assistant ID as string directly to vapi.start()
+      // Use the assistant ID or default
       const assistantToUse = assistantId || 'demo-dealership-agent';
+      console.log('Using assistant:', assistantToUse);
       
+      // Start the call with the assistant ID as a string
       await this.vapi.start(assistantToUse);
+      console.log('Vapi start method called successfully');
+      
     } catch (error) {
       console.error('Failed to start call:', error);
-      throw new Error('Failed to start voice call. Please check microphone permissions.');
+      this.isConnected = false;
+      
+      let errorMessage = 'Failed to start voice call';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      }
+      
+      // Check if it's a permission error
+      if (errorMessage.includes('Permission') || errorMessage.includes('permission')) {
+        errorMessage += '. Please check microphone permissions.';
+      }
+      
+      throw new Error(errorMessage);
     }
   }
 
   async endCall(): Promise<void> {
     try {
+      console.log('Ending Vapi call');
       this.vapi.stop();
+      this.isConnected = false;
       this.stopDurationTimer();
     } catch (error) {
       console.error('Failed to end call:', error);
@@ -136,7 +179,7 @@ export class VapiService {
   }
 
   isCallActive(): boolean {
-    return this.vapi.isMuted !== undefined; // Simple check if call is active
+    return this.isConnected;
   }
 }
 

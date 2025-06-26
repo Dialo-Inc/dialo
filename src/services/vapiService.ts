@@ -82,8 +82,19 @@ export class VapiService {
       this.stopDurationTimer();
       
       let errorMessage = 'Connection failed';
+      
+      // Handle different error formats
       if (error && typeof error === 'object') {
-        errorMessage = error.message || error.toString() || 'Connection failed';
+        if (error.error && error.error.message) {
+          // Handle API error response format
+          errorMessage = Array.isArray(error.error.message) 
+            ? error.error.message.join(', ') 
+            : error.error.message;
+        } else if (error.message) {
+          errorMessage = error.message;
+        } else if (error.toString && error.toString() !== '[object Object]') {
+          errorMessage = error.toString();
+        }
       } else if (typeof error === 'string') {
         errorMessage = error;
       }
@@ -131,12 +142,29 @@ export class VapiService {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       console.log('Microphone permission granted');
       
-      // Use the assistant ID or default
-      const assistantToUse = assistantId || 'demo-dealership-agent';
-      console.log('Using assistant:', assistantToUse);
+      // Create assistant configuration instead of using a string ID
+      const assistantConfig = {
+        model: {
+          provider: 'openai',
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
+            }
+          ]
+        },
+        voice: {
+          provider: 'playht',
+          voiceId: 'jennifer'
+        },
+        firstMessage: 'Hello! I\'m your AI assistant. How can I help you today?'
+      };
       
-      // Start the call with the assistant ID as a string
-      await this.vapi.start(assistantToUse);
+      console.log('Starting call with assistant config:', assistantConfig);
+      
+      // Start the call with the assistant configuration
+      await this.vapi.start(assistantConfig);
       console.log('Vapi start method called successfully');
       
     } catch (error) {

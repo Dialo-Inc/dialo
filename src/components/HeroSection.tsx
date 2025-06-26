@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Users } from 'lucide-react';
@@ -57,10 +56,12 @@ const HeroSection = () => {
                 
                 <div className="min-h-[200px] flex items-center justify-center">
                   <AIVoiceInput 
-                    demoMode={true}
-                    demoInterval={2000}
+                    demoMode={false}
                     visualizerBars={32}
                     className="text-white"
+                    assistantId="demo-dealership-agent"
+                    onStart={() => console.log('Voice demo started')}
+                    onStop={(duration) => console.log('Voice demo ended, duration:', duration)}
                   />
                 </div>
               </div>

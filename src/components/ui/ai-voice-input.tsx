@@ -1,9 +1,10 @@
 
 "use client";
 
-import { Mic } from "lucide-react";
+import { Mic, MicOff, AlertCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useVapi } from "@/hooks/useVapi";
 
 interface AIVoiceInputProps {
   onStart?: () => void;
@@ -12,6 +13,7 @@ interface AIVoiceInputProps {
   demoMode?: boolean;
   demoInterval?: number;
   className?: string;
+  assistantId?: string;
 }
 
 export function AIVoiceInput({
@@ -20,43 +22,25 @@ export function AIVoiceInput({
   visualizerBars = 48,
   demoMode = false,
   demoInterval = 3000,
-  className
+  className,
+  assistantId
 }: AIVoiceInputProps) {
-  const [submitted, setSubmitted] = useState(false);
-  const [time, setTime] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [isDemo, setIsDemo] = useState(demoMode);
+  const { callState, isLoading, permissionGranted, toggleCall, checkMicrophonePermission } = useVapi();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  // Demo mode functionality (fallback)
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-
-    if (submitted) {
-      onStart?.();
-      intervalId = setInterval(() => {
-        setTime((t) => t + 1);
-      }, 1000);
-    } else {
-      onStop?.(time);
-      setTime(0);
-    }
-
-    return () => clearInterval(intervalId);
-  }, [submitted, time, onStart, onStop]);
-
-  useEffect(() => {
-    if (!isDemo) return;
+    if (!isDemo || callState.isConnected) return;
 
     let timeoutId: NodeJS.Timeout;
     const runAnimation = () => {
-      setSubmitted(true);
-      timeoutId = setTimeout(() => {
-        setSubmitted(false);
-        timeoutId = setTimeout(runAnimation, 1000);
-      }, demoInterval);
+      // Demo animation logic here if needed
+      timeoutId = setTimeout(runAnimation, demoInterval);
     };
 
     const initialTimeout = setTimeout(runAnimation, 100);
@@ -64,7 +48,7 @@ export function AIVoiceInput({
       clearTimeout(timeoutId);
       clearTimeout(initialTimeout);
     };
-  }, [isDemo, demoInterval]);
+  }, [isDemo, demoInterval, callState.isConnected]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -72,14 +56,49 @@ export function AIVoiceInput({
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const handleClick = () => {
-    if (isDemo) {
+  const handleClick = async () => {
+    if (isDemo && !callState.isConnected) {
       setIsDemo(false);
-      setSubmitted(false);
-    } else {
-      setSubmitted((prev) => !prev);
+      return;
     }
+
+    if (permissionGranted === false) {
+      await checkMicrophonePermission();
+      return;
+    }
+
+    if (callState.isConnected) {
+      onStop?.(callState.duration);
+    } else {
+      onStart?.();
+    }
+
+    await toggleCall();
   };
+
+  const getStatusText = () => {
+    if (callState.error) return "Error - Click to retry";
+    if (isLoading) return "Connecting...";
+    if (callState.isListening) return "Listening...";
+    if (callState.isSpeaking) return "AI Speaking...";
+    if (callState.isConnected) return "Connected - Click to end";
+    if (permissionGranted === false) return "Click to enable microphone";
+    return "Click to speak";
+  };
+
+  const getButtonIcon = () => {
+    if (callState.error) return <AlertCircle className="w-6 h-6 text-red-400" />;
+    if (permissionGranted === false) return <MicOff className="w-6 h-6 text-red-400" />;
+    if (isLoading) return (
+      <div className="w-6 h-6 rounded-sm animate-spin bg-white cursor-pointer" style={{ animationDuration: "1s" }} />
+    );
+    if (callState.isConnected) return (
+      <div className="w-6 h-6 rounded-sm animate-pulse bg-green-400" />
+    );
+    return <Mic className="w-6 h-6 text-white/70" />;
+  };
+
+  const isActive = callState.isConnected || callState.isListening || callState.isSpeaking;
 
   return (
     <div className={cn("w-full py-4", className)}>
@@ -87,32 +106,24 @@ export function AIVoiceInput({
         <button
           className={cn(
             "group w-16 h-16 rounded-xl flex items-center justify-center transition-colors",
-            submitted
-              ? "bg-none"
-              : "bg-none hover:bg-black/10 dark:hover:bg-white/10"
+            callState.error ? "bg-red-500/20 hover:bg-red-500/30" :
+            callState.isConnected ? "bg-green-500/20 hover:bg-green-500/30" :
+            "bg-none hover:bg-white/10"
           )}
           type="button"
           onClick={handleClick}
+          disabled={isLoading}
         >
-          {submitted ? (
-            <div
-              className="w-6 h-6 rounded-sm animate-spin bg-white cursor-pointer pointer-events-auto"
-              style={{ animationDuration: "3s" }}
-            />
-          ) : (
-            <Mic className="w-6 h-6 text-white/70" />
-          )}
+          {getButtonIcon()}
         </button>
 
         <span
           className={cn(
             "font-mono text-sm transition-opacity duration-300",
-            submitted
-              ? "text-white/70"
-              : "text-white/30"
+            isActive ? "text-white/70" : "text-white/30"
           )}
         >
-          {formatTime(time)}
+          {formatTime(callState.duration)}
         </span>
 
         <div className="h-4 w-64 flex items-center justify-center gap-0.5">
@@ -121,12 +132,12 @@ export function AIVoiceInput({
               key={i}
               className={cn(
                 "w-0.5 rounded-full transition-all duration-300",
-                submitted
+                isActive
                   ? "bg-white/50 animate-pulse"
                   : "bg-white/10 h-1"
               )}
               style={
-                submitted && isClient
+                isActive && isClient
                   ? {
                       height: `${20 + Math.random() * 80}%`,
                       animationDelay: `${i * 0.05}s`,
@@ -137,9 +148,15 @@ export function AIVoiceInput({
           ))}
         </div>
 
-        <p className="h-4 text-xs text-white/70">
-          {submitted ? "Listening..." : "Click to speak"}
+        <p className="h-4 text-xs text-white/70 text-center">
+          {getStatusText()}
         </p>
+
+        {callState.error && (
+          <p className="text-xs text-red-400 text-center max-w-xs">
+            {callState.error}
+          </p>
+        )}
       </div>
     </div>
   );

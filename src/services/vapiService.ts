@@ -1,3 +1,4 @@
+
 import Vapi from '@vapi-ai/web';
 
 export interface VapiCallState {
@@ -16,8 +17,8 @@ export class VapiService {
   private durationInterval?: NodeJS.Timeout;
   
   constructor() {
-    // Using a placeholder public key - user will replace with their actual key
-    this.vapi = new Vapi('your-vapi-public-key-here');
+    // Using your actual Vapi public key
+    this.vapi = new Vapi('0d0d4095-54ea-4274-a6f2-bcadd485dff3');
     this.setupEventListeners();
   }
 

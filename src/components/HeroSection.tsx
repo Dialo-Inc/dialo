@@ -2,14 +2,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Users } from 'lucide-react';
 import { AIVoiceInput } from '@/components/ui/ai-voice-input';
-
 const HeroSection = () => {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white pt-16">
+  return <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white pt-16">
       <div className="absolute inset-0 opacity-20">
         <div className="h-full w-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       </div>
       
       <div className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-32">
@@ -37,7 +35,7 @@ const HeroSection = () => {
               <Button size="lg" className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-semibold">
                 Secure Your 70% Lifetime Discount Now
               </Button>
-              <Button variant="outline" size="lg" className="border-slate-400 text-slate-300 hover:bg-slate-800 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
+              <Button variant="outline" size="lg" className="border-slate-400 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg text-zinc-400 bg-zinc-300 hover:bg-zinc-200">
                 Watch Demo
               </Button>
             </div>
@@ -55,20 +53,13 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="min-h-[200px] flex items-center justify-center">
-                  <AIVoiceInput 
-                    demoMode={false}
-                    visualizerBars={32}
-                    className="text-white"
-                    assistantId="demo-dealership-agent"
-                    onStart={() => console.log('Voice demo started')}
-                    onStop={(duration) => console.log('Voice demo ended, duration:', duration)}
-                  />
+                  <AIVoiceInput demoMode={false} visualizerBars={32} className="text-white" assistantId="demo-dealership-agent" onStart={() => console.log('Voice demo started')} onStop={duration => console.log('Voice demo ended, duration:', duration)} />
                 </div>
               </div>
               
               <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400">
-                <span>Response Time: 0.3s</span>
-                <span>Customer Satisfaction: 98%</span>
+                <span>Response Time: 0.6s</span>
+                <span>Customer Satisfaction: 99.5%</span>
               </div>
             </div>
           </div>
@@ -78,8 +69,6 @@ const HeroSection = () => {
           <ArrowDown className="w-6 h-6 mx-auto text-slate-400 animate-bounce" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;

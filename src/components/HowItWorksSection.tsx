@@ -1,40 +1,29 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Users, Phone, Shield } from 'lucide-react';
-
 const HowItWorksSection = () => {
-  const steps = [
-    {
-      icon: Shield,
-      number: "01",
-      title: "Seamless Integration",
-      description: "Our team integrates the AI voice agent with your existing website, phone system, and CRM. No disruption to your current operations."
-    },
-    {
-      icon: Phone,
-      number: "02", 
-      title: "Intelligent Interaction",
-      description: "Customers interact with the AI agent for routine inquiries, 24/7. The agent handles common questions, schedules appointments, and qualifies leads."
-    },
-    {
-      icon: Users,
-      number: "03",
-      title: "Human Handoff",
-      description: "For complex or sensitive issues, the AI agent seamlessly transfers the conversation to your sales or service team, providing full context for a smooth transition."
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-white">
+  const steps = [{
+    icon: Shield,
+    number: "01",
+    title: "Seamless Integration",
+    description: "Our team integrates the AI voice agent with your existing website, phone system, and CRM. No disruption to your current operations."
+  }, {
+    icon: Phone,
+    number: "02",
+    title: "Intelligent Interaction",
+    description: "Customers interact with the AI agent for routine inquiries, 24/7. The agent handles common questions, schedules appointments, and qualifies leads."
+  }, {
+    icon: Users,
+    number: "03",
+    title: "Human Handoff",
+    description: "For complex or sensitive issues, the AI agent seamlessly transfers the conversation to your sales or service team, providing full context for a smooth transition."
+  }];
+  return <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
             Simple Integration, <span className="text-blue-600">Powerful Results</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Get up and running in days, not months. Our streamlined process ensures minimal disruption 
-            while maximizing the impact on your dealership operations.
-          </p>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">Get up and running in minutes, not days. Our streamlined process ensures minimal disruption while maximizing the impact on your dealership operations.</p>
         </div>
         
         <div className="relative">
@@ -42,8 +31,7 @@ const HowItWorksSection = () => {
           <div className="hidden lg:block absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200 transform -translate-y-1/2"></div>
           
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 relative">
-            {steps.map((step, index) => (
-              <div key={index} className="relative">
+            {steps.map((step, index) => <div key={index} className="relative">
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-500"></div>
                   <CardContent className="p-8 text-center">
@@ -59,13 +47,10 @@ const HowItWorksSection = () => {
                 </Card>
                 
                 {/* Arrow for mobile */}
-                {index < steps.length - 1 && (
-                  <div className="lg:hidden flex justify-center my-6">
+                {index < steps.length - 1 && <div className="lg:hidden flex justify-center my-6">
                     <ArrowRight className="w-6 h-6 text-blue-500" />
-                  </div>
-                )}
-              </div>
-            ))}
+                  </div>}
+              </div>)}
           </div>
         </div>
         
@@ -85,8 +70,6 @@ const HowItWorksSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HowItWorksSection;

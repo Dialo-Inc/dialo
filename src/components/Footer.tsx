@@ -1,14 +1,11 @@
-
 import { Separator } from '@/components/ui/separator';
-
 const Footer = () => {
-  return (
-    <footer className="bg-slate-900 text-white py-12 sm:py-16">
+  return <footer className="bg-slate-900 text-white py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           <div className="md:col-span-2">
             <div className="mb-6">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">AI Voice Agent Platform</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">Dialo</h3>
               <p className="text-slate-400 leading-relaxed max-w-md text-sm sm:text-base">
                 Transforming automotive dealership communication with intelligent AI technology. 
                 Join the revolution and secure your competitive advantage today.
@@ -17,7 +14,7 @@ const Footer = () => {
             
             <div className="space-y-2 text-sm sm:text-base">
               <p className="text-slate-400">Contact Information:</p>
-              <p className="text-white">Email: info@dealership-ai-platform.com</p>
+              <p className="text-white">Email: info@usedialo.com</p>
               <p className="text-white">Phone: 1-800-AI-VOICE</p>
               <p className="text-white">Address: San Francisco, CA</p>
             </div>
@@ -54,8 +51,8 @@ const Footer = () => {
           </div>
           
           <div className="text-center md:text-right">
-            <p>&copy; 2025 AI Voice Agent Platform. All rights reserved.</p>
-            <p className="text-xs sm:text-sm mt-1">Built with cutting-edge AI technology for automotive excellence.</p>
+            <p>© 2025 Dialo, Inc. All rights reserved.</p>
+            <p className="text-xs sm:text-sm mt-1">Built with cutting-edge AI technology for dealership excellence.</p>
           </div>
         </div>
         
@@ -68,8 +65,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

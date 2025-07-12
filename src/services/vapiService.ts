@@ -142,21 +142,21 @@ export class VapiService {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       console.log('Microphone permission granted');
       
-      // Create assistant configuration instead of using a string ID
+      // Create assistant configuration with proper typing
       const assistantConfig = {
         model: {
-          provider: 'openai',
-          model: 'gpt-3.5-turbo',
+          provider: 'openai' as const,
+          model: 'gpt-3.5-turbo' as const,
           messages: [
             {
-              role: 'system',
+              role: 'system' as const,
               content: 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
             }
           ]
         },
         voice: {
-          provider: 'playht',
-          voiceId: 'jennifer'
+          provider: 'playht' as const,
+          voiceId: 'jennifer' as const
         },
         firstMessage: 'Hello! I\'m your AI assistant. How can I help you today?'
       };
@@ -164,7 +164,7 @@ export class VapiService {
       console.log('Starting call with assistant config:', assistantConfig);
       
       // Start the call with the assistant configuration
-      await this.vapi.start(assistantConfig);
+      await this.vapi.start(assistantConfig as any);
       console.log('Vapi start method called successfully');
       
     } catch (error) {

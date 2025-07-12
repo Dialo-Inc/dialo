@@ -87,15 +87,15 @@ export function AIVoiceInput({
   };
 
   const getButtonIcon = () => {
-    if (callState.error) return <AlertCircle className="w-6 h-6 text-destructive" />;
-    if (permissionGranted === false) return <MicOff className="w-6 h-6 text-destructive" />;
+    if (callState.error) return <AlertCircle className="w-6 h-6 text-red-400" />;
+    if (permissionGranted === false) return <MicOff className="w-6 h-6 text-red-400" />;
     if (isLoading) return (
-      <div className="w-6 h-6 rounded-sm animate-spin bg-primary cursor-pointer" style={{ animationDuration: "1s" }} />
+      <div className="w-6 h-6 rounded-sm animate-spin bg-white cursor-pointer" style={{ animationDuration: "1s" }} />
     );
     if (callState.isConnected) return (
-      <div className="w-6 h-6 rounded-sm animate-pulse bg-primary" />
+      <div className="w-6 h-6 rounded-sm animate-pulse bg-green-400" />
     );
-    return <Mic className="w-6 h-6 text-muted-foreground" />;
+    return <Mic className="w-6 h-6 text-white/70" />;
   };
 
   const isActive = callState.isConnected || callState.isListening || callState.isSpeaking;
@@ -105,10 +105,10 @@ export function AIVoiceInput({
       <div className="relative max-w-xl w-full mx-auto flex items-center flex-col gap-2">
         <button
           className={cn(
-            "group w-16 h-16 rounded-xl flex items-center justify-center magnetic glass-card border-holographic",
-            callState.error ? "border-destructive/50 hover:border-destructive" :
-            callState.isConnected ? "border-primary/50 hover:border-primary animate-pulse-glow" :
-            "border-border/30 hover:border-primary/30"
+            "group w-16 h-16 rounded-xl flex items-center justify-center transition-colors",
+            callState.error ? "bg-red-500/20 hover:bg-red-500/30" :
+            callState.isConnected ? "bg-green-500/20 hover:bg-green-500/30" :
+            "bg-none hover:bg-white/10"
           )}
           type="button"
           onClick={handleClick}
@@ -120,32 +120,27 @@ export function AIVoiceInput({
         <span
           className={cn(
             "font-mono text-sm transition-opacity duration-300",
-            isActive ? "text-primary" : "text-muted-foreground"
+            isActive ? "text-white/70" : "text-white/30"
           )}
         >
           {formatTime(callState.duration)}
         </span>
 
-        <div className="h-4 w-64 flex items-center justify-center gap-0.5 relative">
-          {/* Sound wave background glow */}
-          {isActive && (
-            <div className="absolute inset-0 rounded-full bg-primary/20 blur-md animate-pulse" />
-          )}
+        <div className="h-4 w-64 flex items-center justify-center gap-0.5">
           {[...Array(visualizerBars)].map((_, i) => (
             <div
               key={i}
               className={cn(
-                "w-0.5 rounded-full transition-all duration-300 relative z-10",
+                "w-0.5 rounded-full transition-all duration-300",
                 isActive
-                  ? "bg-gradient-to-t from-primary to-accent animate-pulse"
-                  : "bg-muted-foreground/30 h-1"
+                  ? "bg-white/50 animate-pulse"
+                  : "bg-white/10 h-1"
               )}
               style={
                 isActive && isClient
                   ? {
                       height: `${20 + Math.random() * 80}%`,
                       animationDelay: `${i * 0.05}s`,
-                      boxShadow: isActive ? `0 0 10px hsl(var(--primary)/0.5)` : undefined
                     }
                   : undefined
               }
@@ -153,12 +148,12 @@ export function AIVoiceInput({
           ))}
         </div>
 
-        <p className="h-4 text-xs text-muted-foreground text-center">
+        <p className="h-4 text-xs text-white/70 text-center">
           {getStatusText()}
         </p>
 
         {callState.error && (
-          <p className="text-xs text-destructive text-center max-w-xs glass-card px-2 py-1 rounded border-destructive/30">
+          <p className="text-xs text-red-400 text-center max-w-xs">
             {callState.error}
           </p>
         )}

@@ -17,7 +17,13 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Animated particle background */}
+      <div className="particles" />
+      
+      {/* Circuit board pattern overlay */}
+      <div className="fixed inset-0 circuit-pattern opacity-30 pointer-events-none" />
+      
       <Header />
       <HeroSection />
       <ProblemSection />

@@ -1,28 +1,20 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Users, Shield } from 'lucide-react';
-
 const SolutionSection = () => {
-  const features = [
-    {
-      icon: Phone,
-      title: "24/7 Instant Customer Handling",
-      description: "Our AI Voice Agent provides round-the-clock customer support, answering FAQs, assisting with scheduling, and qualifying leads, freeing your staff to focus on high-value interactions."
-    },
-    {
-      icon: Shield,
-      title: "Seamless System Integration",
-      description: "Integrates perfectly with your dealership website, call center, and CRM, ensuring a unified customer view and personalized interactions across all touchpoints."
-    },
-    {
-      icon: Users,
-      title: "Automotive Industry Expertise",
-      description: "Trained on extensive automotive industry data, our agents understand customer intent, provide accurate information, and ensure every interaction is consistent and professional."
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-white">
+  const features = [{
+    icon: Phone,
+    title: "24/7 Instant Customer Handling",
+    description: "Our AI Voice Agent provides round-the-clock customer support, answering FAQs, assisting with scheduling, and qualifying leads, freeing your staff to focus on high-value interactions."
+  }, {
+    icon: Shield,
+    title: "Seamless System Integration",
+    description: "Integrates perfectly with your dealership website, call center, and CRM, ensuring a unified customer view and personalized interactions across all touchpoints."
+  }, {
+    icon: Users,
+    title: "Automotive Industry Expertise",
+    description: "Trained on extensive automotive industry data, our agents understand customer intent, provide accurate information, and ensure every interaction is consistent and professional."
+  }];
+  return <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
@@ -38,8 +30,7 @@ const SolutionSection = () => {
         </div>
         
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          {features.map((feature, index) => <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="text-center pb-4">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <feature.icon className="w-8 h-8 text-blue-600" />
@@ -49,8 +40,7 @@ const SolutionSection = () => {
               <CardContent>
                 <p className="text-slate-600 leading-relaxed text-center">{feature.description}</p>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
         
         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 lg:p-12 border border-blue-100">
@@ -66,7 +56,7 @@ const SolutionSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-900 mb-1">Website Integration</h4>
-                    <p className="text-slate-600">Embedded chat widget handles inquiries instantly</p>
+                    <p className="text-slate-600">Embedded agent widget handles inquiries instantly</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -121,8 +111,6 @@ const SolutionSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SolutionSection;

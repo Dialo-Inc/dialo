@@ -87,28 +87,28 @@ export function AIVoiceInput({
   };
 
   const getButtonIcon = () => {
-    if (callState.error) return <AlertCircle className="w-6 h-6 text-red-400" />;
-    if (permissionGranted === false) return <MicOff className="w-6 h-6 text-red-400" />;
+    if (callState.error) return <AlertCircle className="w-7 h-7 text-destructive" />;
+    if (permissionGranted === false) return <MicOff className="w-7 h-7 text-destructive" />;
     if (isLoading) return (
-      <div className="w-6 h-6 rounded-sm animate-spin bg-white cursor-pointer" style={{ animationDuration: "1s" }} />
+      <div className="w-7 h-7 rounded-sm animate-spin bg-primary" style={{ animationDuration: "1s" }} />
     );
     if (callState.isConnected) return (
-      <div className="w-6 h-6 rounded-sm animate-pulse bg-green-400" />
+      <div className="w-7 h-7 rounded-sm animate-pulse bg-accent" />
     );
-    return <Mic className="w-6 h-6 text-white/70" />;
+    return <Mic className="w-7 h-7 text-muted-foreground" />;
   };
 
   const isActive = callState.isConnected || callState.isListening || callState.isSpeaking;
 
   return (
-    <div className={cn("w-full py-4", className)}>
-      <div className="relative max-w-xl w-full mx-auto flex items-center flex-col gap-2">
+    <div className={cn("w-full py-6", className)}>
+      <div className="relative max-w-xl w-full mx-auto flex items-center flex-col gap-6">
         <button
           className={cn(
-            "group w-16 h-16 rounded-xl flex items-center justify-center transition-colors",
-            callState.error ? "bg-red-500/20 hover:bg-red-500/30" :
-            callState.isConnected ? "bg-green-500/20 hover:bg-green-500/30" :
-            "bg-none hover:bg-white/10"
+            "group w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 shadow-premium-lg",
+            callState.error ? "bg-destructive/20 hover:bg-destructive/30 shadow-premium-md" :
+            callState.isConnected ? "bg-accent/20 hover:bg-accent/30 shadow-premium-xl" :
+            "bg-secondary/50 hover:bg-secondary border border-border"
           )}
           type="button"
           onClick={handleClick}
@@ -120,21 +120,21 @@ export function AIVoiceInput({
         <span
           className={cn(
             "font-mono text-sm transition-opacity duration-300",
-            isActive ? "text-white/70" : "text-white/30"
+            isActive ? "text-foreground" : "text-muted-foreground"
           )}
         >
           {formatTime(callState.duration)}
         </span>
 
-        <div className="h-4 w-64 flex items-center justify-center gap-0.5">
+        <div className="h-16 w-80 flex items-center justify-center gap-1">
           {[...Array(visualizerBars)].map((_, i) => (
             <div
               key={i}
               className={cn(
                 "w-0.5 rounded-full transition-all duration-300",
                 isActive
-                  ? "bg-white/50 animate-pulse"
-                  : "bg-white/10 h-1"
+                  ? "bg-accent animate-pulse"
+                  : "bg-muted-foreground/20 h-1"
               )}
               style={
                 isActive && isClient
@@ -148,14 +148,16 @@ export function AIVoiceInput({
           ))}
         </div>
 
-        <p className="h-4 text-xs text-white/70 text-center">
+        <p className="h-4 text-sm text-muted-foreground text-center font-medium">
           {getStatusText()}
         </p>
 
         {callState.error && (
-          <p className="text-xs text-red-400 text-center max-w-xs">
-            {callState.error}
-          </p>
+          <div className="mt-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg max-w-xs">
+            <p className="text-xs text-destructive text-center">
+              {callState.error}
+            </p>
+          </div>
         )}
       </div>
     </div>

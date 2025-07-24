@@ -1,50 +1,85 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, Menu } from 'lucide-react';
+import { Menu, X, Users } from 'lucide-react';
 import { useState } from 'react';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  return <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700">
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center gap-4">
-            <div className="text-xl font-bold text-white">Dialo</div>
-            <Badge className="hidden sm:flex bg-teal-500/20 text-teal-300 border-teal-500/30">
+            <div className="text-xl sm:text-2xl font-bold text-primary">
+              VoiceAI Pro
+            </div>
+            <Badge className="hidden sm:flex bg-accent/10 text-accent border-accent/20 px-3 py-1">
               <Users className="w-3 h-3 mr-1" />
               Pre-Sale Live
             </Badge>
           </div>
           
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-slate-300 hover:text-white transition-colors">Features</a>
-            <a href="#benefits" className="text-slate-300 hover:text-white transition-colors">Benefits</a>
-            <a href="#pricing" className="text-slate-300 hover:text-white transition-colors">Pricing</a>
-            <a href="#faq" className="text-slate-300 hover:text-white transition-colors">FAQ</a>
+          <nav className="hidden lg:flex items-center space-x-8">
+            <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Features
+            </a>
+            <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Benefits
+            </a>
+            <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
+              How It Works
+            </a>
+            <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Pricing
+            </a>
           </nav>
           
-          <div className="flex items-center gap-4">
-            <Button size="sm" className="hidden sm:flex bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700">
+          <div className="hidden lg:flex items-center space-x-4">
+            <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+              Sign In
+            </Button>
+            <Button className="bg-accent hover:bg-accent-hover text-accent-foreground btn-premium shadow-premium-md">
               Get 70% Off
             </Button>
-            
-            <button className="md:hidden text-white p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <Menu className="w-5 h-5" />
-            </button>
           </div>
+          
+          <button
+            className="lg:hidden p-2 text-foreground"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        
-        {isMenuOpen && <div className="md:hidden border-t border-slate-700 py-4">
-            <nav className="flex flex-col gap-4">
-              <a href="#features" className="text-slate-300 hover:text-white transition-colors">Features</a>
-              <a href="#benefits" className="text-slate-300 hover:text-white transition-colors">Benefits</a>
-              <a href="#pricing" className="text-slate-300 hover:text-white transition-colors">Pricing</a>
-              <a href="#faq" className="text-slate-300 hover:text-white transition-colors">FAQ</a>
-              <Button size="sm" className="w-fit bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700">
+      </div>
+      
+      {isMenuOpen && (
+        <div className="lg:hidden bg-background/95 backdrop-blur-md border-t border-border/50">
+          <div className="px-4 py-6 space-y-4">
+            <a href="#features" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Features
+            </a>
+            <a href="#benefits" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Benefits
+            </a>
+            <a href="#how-it-works" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
+              How It Works
+            </a>
+            <a href="#pricing" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Pricing
+            </a>
+            <div className="pt-4 space-y-2">
+              <Button variant="ghost" className="w-full justify-start text-muted-foreground hover:text-foreground">
+                Sign In
+              </Button>
+              <Button className="w-full bg-accent hover:bg-accent-hover text-accent-foreground btn-premium">
                 Get 70% Off
               </Button>
-            </nav>
-          </div>}
-      </div>
-    </header>;
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 };
 export default Header;

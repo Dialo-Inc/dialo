@@ -1,74 +1,121 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowDown, Users } from 'lucide-react';
+import { ArrowDown, Users, Play } from 'lucide-react';
 import { AIVoiceInput } from '@/components/ui/ai-voice-input';
+
 const HeroSection = () => {
-  return <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white pt-16">
-      <div className="absolute inset-0 opacity-20">
+  return (
+    <section className="relative overflow-hidden bg-background pt-16 min-h-screen flex items-center">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
         <div className="h-full w-full" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }}></div>
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
       </div>
       
       <div className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="text-center lg:text-left">
-            <Badge className="mb-4 sm:mb-6 bg-teal-500/20 text-teal-300 border-teal-500/30 text-sm sm:text-base">
-              <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
+          <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
+            <Badge className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground border-border/50 px-4 py-2 text-sm font-medium">
+              <Users className="w-4 h-4" />
               Trusted by 50+ Early Adopters
             </Badge>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-              Stop Losing <span className="text-teal-400">70% of Your</span> Service Revenue
-            </h1>
+            <div className="space-y-6">
+              <h1 className="heading-xl text-foreground leading-[1.1]">
+                Stop Losing{' '}
+                <span className="relative">
+                  <span className="text-accent">70% of Your</span>
+                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-accent/20 rounded-full"></div>
+                </span>{' '}
+                Service Revenue
+              </h1>
+              
+              <p className="text-large text-muted-foreground font-medium max-w-2xl">
+                The AI Voice Agent That Transforms Dealership Communication
+              </p>
+              
+              <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                Our AI Voice Agent Platform seamlessly integrates to boost sales, enhance CSI, and cut costs. 
+                Pre-order now for a{' '}
+                <strong className="text-accent font-semibold">lifetime 70% discount</strong>{' '}
+                and join the future of automotive communication.
+              </p>
+            </div>
             
-            <p className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4 text-slate-300 font-medium">
-              The AI Voice Agent That Transforms Dealership Communication
-            </p>
-            
-            <p className="text-base sm:text-lg mb-6 sm:mb-8 text-slate-400 max-w-xl mx-auto lg:mx-0">
-              Our AI Voice Agent Platform seamlessly integrates to boost sales, enhance CSI, and cut costs. 
-              Pre-order now for a <strong className="text-teal-400">lifetime 70% discount</strong> and join the future of automotive communication.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-semibold">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent-hover text-accent-foreground px-8 py-6 text-lg font-semibold btn-premium shadow-premium-lg"
+              >
                 Secure Your 70% Lifetime Discount Now
               </Button>
-              <Button variant="outline" size="lg" className="border-slate-400 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg text-zinc-400 bg-zinc-300 hover:bg-zinc-200">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-border bg-background hover:bg-secondary px-8 py-6 text-lg group"
+              >
+                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Watch Demo
               </Button>
             </div>
           </div>
           
-          <div className="relative mt-8 lg:mt-0">
-            <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl">
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-teal-500 rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-500 rounded-full animate-pulse delay-500"></div>
+          {/* Right Content - AI Demo */}
+          <div className="relative mt-8 lg:mt-0 animate-slide-in-right">
+            <div className="relative bg-card border border-border rounded-2xl p-6 lg:p-8 shadow-premium-xl">
+              {/* Status indicator */}
+              <div className="absolute top-4 right-4 flex items-center gap-2">
+                <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-muted-foreground">Live Demo</span>
+              </div>
               
-              <div className="bg-slate-900 rounded-lg p-4 sm:p-6 mb-4">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-green-400 text-sm font-medium">AI Agent Active</span>
+              {/* Demo interface */}
+              <div className="bg-secondary/50 rounded-xl p-6 mb-6 min-h-[300px] flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+                  <span className="text-accent text-sm font-semibold tracking-wider uppercase">AI Agent Active</span>
                 </div>
                 
-                <div className="min-h-[200px] flex items-center justify-center">
-                  <AIVoiceInput demoMode={false} visualizerBars={32} className="text-white" assistantId="demo-dealership-agent" onStart={() => console.log('Voice demo started')} onStop={duration => console.log('Voice demo ended, duration:', duration)} />
+                {/* AI Voice Input Component */}
+                <div className="flex-1 flex items-center justify-center">
+                  <AIVoiceInput 
+                    demoMode={false} 
+                    visualizerBars={32} 
+                    className="text-foreground" 
+                    assistantId="demo-dealership-agent" 
+                    onStart={() => console.log('Voice demo started')} 
+                    onStop={duration => console.log('Voice demo ended, duration:', duration)} 
+                  />
                 </div>
               </div>
               
-              <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400">
-                <span>Response Time: 0.6s</span>
-                <span>Customer Satisfaction: 99.5%</span>
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div className="p-3 bg-secondary/30 rounded-lg">
+                  <div className="text-lg font-bold text-foreground">0.6s</div>
+                  <div className="text-xs text-muted-foreground">Response Time</div>
+                </div>
+                <div className="p-3 bg-secondary/30 rounded-lg">
+                  <div className="text-lg font-bold text-foreground">99.5%</div>
+                  <div className="text-xs text-muted-foreground">Satisfaction</div>
+                </div>
               </div>
             </div>
+            
+            {/* Floating elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent/20 rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-primary/20 rounded-full animate-pulse delay-500"></div>
           </div>
         </div>
         
-        <div className="text-center mt-12 sm:mt-16">
-          <ArrowDown className="w-6 h-6 mx-auto text-slate-400 animate-bounce" />
+        {/* Scroll indicator */}
+        <div className="text-center mt-16 animate-fade-in">
+          <ArrowDown className="w-6 h-6 mx-auto text-muted-foreground animate-bounce" />
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default HeroSection;

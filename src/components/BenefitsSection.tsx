@@ -22,53 +22,55 @@ const BenefitsSection = () => {
     metric: "60%",
     description: "Automate routine inquiries and tasks, allowing your valuable staff to focus on complex customer needs and closing deals, not administrative burdens."
   }];
-  return <section className="py-20 bg-slate-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Drive Revenue, Boost Satisfaction, <span className="text-teal-600">Maximize Efficiency</span>
+  return <section className="py-24 bg-secondary/30 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background opacity-80" />
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center mb-20">
+          <h2 className="heading-lg text-foreground mb-8">
+            Drive Revenue, Boost Satisfaction, <span className="text-accent">Maximize Efficiency</span>
           </h2>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-large text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
             The Tangible Impact: Quantifiable results that transform your dealership's bottom line
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {benefits.map((benefit, index) => <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-bl-full"></div>
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-8 h-8 text-white" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          {benefits.map((benefit, index) => <Card key={index} className="group bg-card/50 backdrop-blur-sm border-border/50 shadow-premium-md hover:shadow-premium-xl transition-all duration-500 hover:scale-105 hover:bg-card relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-accent/20 rounded-bl-3xl opacity-50"></div>
+              <CardHeader className="text-center pb-6 relative">
+                <div className="w-20 h-20 bg-gradient-accent rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 shadow-premium-sm">
+                  <benefit.icon className="w-10 h-10 text-accent-foreground" />
                 </div>
-                <div className="text-3xl font-bold text-teal-600 mb-2">{benefit.metric}</div>
-                <CardTitle className="text-lg text-slate-900">{benefit.title}</CardTitle>
+                <div className="text-4xl font-bold text-accent mb-4 group-hover:scale-105 transition-transform duration-500">{benefit.metric}</div>
+                <CardTitle className="text-lg text-foreground group-hover:text-foreground transition-colors duration-500">{benefit.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 leading-relaxed text-center text-sm">{benefit.description}</p>
+              <CardContent className="relative">
+                <p className="text-muted-foreground leading-relaxed text-center">{benefit.description}</p>
               </CardContent>
             </Card>)}
         </div>
         
-        <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-8 lg:p-12 text-white text-center">
-          <h3 className="text-3xl lg:text-4xl font-bold mb-6">
+        <div className="bg-gradient-accent rounded-3xl p-12 lg:p-16 text-accent-foreground text-center shadow-premium-xl">
+          <h3 className="heading-sm mb-8">
             Imagine Recovering $2M+ in Lost Service Revenue
           </h3>
-          <p className="text-xl mb-8 opacity-90 max-w-4xl mx-auto">
+          <p className="text-large mb-12 opacity-90 max-w-5xl mx-auto leading-relaxed">
             While your competitors struggle with outdated communication methods, you'll be capturing every opportunity, 
             delighting every customer, and maximizing every revenue stream with AI-powered precision.
           </p>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="opacity-90">Customer Coverage</div>
+          <div className="grid md:grid-cols-3 gap-12 text-center">
+            <div className="group">
+              <div className="text-5xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">24/7</div>
+              <div className="opacity-90 text-lg">Customer Coverage</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">99.5%</div>
-              <div className="opacity-90">Customer Satisfaction</div>
+            <div className="group">
+              <div className="text-5xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">99.5%</div>
+              <div className="opacity-90 text-lg">Customer Satisfaction</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">0.6s</div>
-              <div className="opacity-90">Response Time</div>
+            <div className="group">
+              <div className="text-5xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">0.6s</div>
+              <div className="opacity-90 text-lg">Response Time</div>
             </div>
           </div>
         </div>

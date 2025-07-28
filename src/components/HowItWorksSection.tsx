@@ -17,55 +17,57 @@ const HowItWorksSection = () => {
     title: "Human Handoff",
     description: "For complex or sensitive issues, the AI agent seamlessly transfers the conversation to your sales or service team, providing full context for a smooth transition."
   }];
-  return <section className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Simple Integration, <span className="text-blue-600">Powerful Results</span>
+  return <section className="py-24 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5" />
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center mb-20">
+          <h2 className="heading-lg text-foreground mb-8">
+            Simple Integration, <span className="text-accent">Powerful Results</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">Get up and running in minutes, not days. Our streamlined process ensures minimal disruption while maximizing the impact on your dealership operations.</p>
+          <p className="text-large text-muted-foreground max-w-4xl mx-auto leading-relaxed">Get up and running in minutes, not days. Our streamlined process ensures minimal disruption while maximizing the impact on your dealership operations.</p>
         </div>
         
         <div className="relative">
           {/* Connection lines for desktop */}
-          <div className="hidden lg:block absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200 transform -translate-y-1/2"></div>
+          <div className="hidden lg:block absolute top-1/2 left-1/4 right-1/4 h-1 bg-gradient-accent rounded-full transform -translate-y-1/2 opacity-30"></div>
           
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 relative">
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 relative">
             {steps.map((step, index) => <div key={index} className="relative">
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-teal-500"></div>
-                  <CardContent className="p-8 text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 relative">
-                      <step.icon className="w-10 h-10 text-white" />
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-slate-900 rounded-full flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">{step.number}</span>
+                <Card className="group bg-card/50 backdrop-blur-sm border-border/50 shadow-premium-md hover:shadow-premium-xl transition-all duration-500 hover:scale-105 hover:bg-card relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-accent rounded-t-lg"></div>
+                  <CardContent className="p-10 text-center relative">
+                    <div className="w-24 h-24 bg-gradient-accent rounded-2xl flex items-center justify-center mx-auto mb-8 relative group-hover:scale-110 transition-transform duration-500 shadow-premium-md">
+                      <step.icon className="w-12 h-12 text-accent-foreground" />
+                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-primary rounded-2xl flex items-center justify-center shadow-premium-sm">
+                        <span className="text-primary-foreground font-bold">{step.number}</span>
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4">{step.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{step.description}</p>
+                    <h3 className="text-2xl font-bold text-foreground mb-6 group-hover:text-foreground transition-colors duration-500">{step.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-lg">{step.description}</p>
                   </CardContent>
                 </Card>
                 
                 {/* Arrow for mobile */}
-                {index < steps.length - 1 && <div className="lg:hidden flex justify-center my-6">
-                    <ArrowRight className="w-6 h-6 text-blue-500" />
+                {index < steps.length - 1 && <div className="lg:hidden flex justify-center my-8">
+                    <ArrowRight className="w-8 h-8 text-accent" />
                   </div>}
               </div>)}
           </div>
         </div>
         
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-2xl p-8 lg:p-12 border border-blue-100">
-            <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-4">
+        <div className="mt-20 text-center">
+          <div className="bg-gradient-to-br from-accent/5 via-primary/5 to-accent/5 rounded-3xl p-12 lg:p-16 border border-accent/20 backdrop-blur-sm">
+            <h3 className="heading-sm text-foreground mb-6">
               Ready to Transform Your Dealership?
             </h3>
-            <p className="text-lg text-slate-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-large text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
               Join the AI revolution in automotive customer service. Your competitors are already exploring this technology. 
               Don't let them get ahead.
             </p>
-            <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full font-semibold">
+            <div className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent-hover transition-colors duration-300 shadow-premium-lg hover:shadow-premium-xl">
               Implementation starts in 48 hours
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-6 h-6" />
             </div>
           </div>
         </div>

@@ -25,44 +25,46 @@ const ProblemSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            The Hidden Costs of <span className="text-red-600">Outdated</span> Dealership Communication
+    <section className="py-24 bg-secondary/30 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background opacity-80" />
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center mb-20">
+          <h2 className="heading-lg text-foreground mb-8">
+            The Hidden Costs of <span className="text-destructive">Outdated</span> Dealership Communication
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-large text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Are your sales teams overwhelmed by inconsistent follow-ups and missed inquiries? 
             You're not alone. The numbers reveal the true cost of communication failures.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {problems.map((problem, index) => (
-            <Card key={index} className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <problem.icon className="w-8 h-8 text-red-600" />
+            <Card key={index} className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 shadow-premium-md hover:shadow-premium-xl transition-all duration-500 hover:scale-105 hover:bg-card">
+              <div className="absolute inset-0 bg-gradient-to-br from-destructive/5 to-destructive/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <CardContent className="p-8 text-center relative">
+                <div className="w-20 h-20 bg-destructive/10 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-destructive/20 transition-colors duration-500">
+                  <problem.icon className="w-10 h-10 text-destructive group-hover:scale-110 transition-transform duration-500" />
                 </div>
-                <div className="text-4xl font-bold text-red-600 mb-2">{problem.stat}</div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">{problem.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{problem.description}</p>
+                <div className="text-5xl font-bold text-destructive mb-4 group-hover:scale-105 transition-transform duration-500">{problem.stat}</div>
+                <h3 className="text-xl font-semibold text-foreground mb-6 group-hover:text-foreground transition-colors duration-500">{problem.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{problem.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
         
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl p-8 lg:p-12 text-center border border-red-100">
-          <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-4">
+        <div className="bg-gradient-to-br from-destructive/5 via-destructive/10 to-destructive/5 rounded-3xl p-12 lg:p-16 text-center border border-destructive/20 backdrop-blur-sm">
+          <h3 className="heading-sm text-foreground mb-6">
             The Reality: Every Missed Call is Lost Revenue
           </h3>
-          <p className="text-lg text-slate-700 mb-6 max-w-4xl mx-auto">
+          <p className="text-large text-muted-foreground mb-8 max-w-5xl mx-auto leading-relaxed">
             Manual processes create bottlenecks. Customers get frustrated with slow responses. 
             Your staff burns out handling repetitive inquiries. Meanwhile, competitors with better 
             communication systems capture the customers you're losing.
           </p>
-          <div className="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded-full font-semibold">
-            <ArrowDown className="w-5 h-5 mr-2" />
+          <div className="inline-flex items-center bg-destructive text-destructive-foreground px-8 py-4 rounded-full font-semibold text-lg hover:bg-destructive/90 transition-colors duration-300 shadow-premium-lg hover:shadow-premium-xl">
+            <ArrowDown className="w-6 h-6 mr-3" />
             This Ends Now
           </div>
         </div>

@@ -37,7 +37,7 @@ const HeroSection = () => {
               </p>
               
               <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-                Our AI Voice Agent Platform seamlessly integrates to boost sales, enhance CSI, and cut costs. 
+                Dialo seamlessly integrates to boost sales, enhance CSI, and cut costs. 
                 Pre-order now for a{' '}
                 <strong className="text-accent font-semibold">lifetime 70% discount</strong>{' '}
                 and join the future of automotive communication.

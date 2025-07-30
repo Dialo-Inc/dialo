@@ -5,44 +5,39 @@ import { Badge } from '@/components/ui/badge';
 import { Clock, Users, ArrowRight, CheckCircle } from 'lucide-react';
 const PreSaleSection = () => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 14,
-    hours: 23,
-    minutes: 42,
-    seconds: 18
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
   });
+
   useEffect(() => {
+    const calculateTimeLeft = () => {
+      // Fixed launch date: August 31, 2025 at 11:59 PM UTC
+      const launchDate = new Date('2025-08-31T23:59:59.999Z');
+      const now = new Date();
+      const difference = launchDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        return {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        };
+      }
+      
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    };
+
+    // Update immediately
+    setTimeLeft(calculateTimeLeft());
+
+    // Update every second
     const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) {
-          return {
-            ...prev,
-            seconds: prev.seconds - 1
-          };
-        } else if (prev.minutes > 0) {
-          return {
-            ...prev,
-            minutes: prev.minutes - 1,
-            seconds: 59
-          };
-        } else if (prev.hours > 0) {
-          return {
-            ...prev,
-            hours: prev.hours - 1,
-            minutes: 59,
-            seconds: 59
-          };
-        } else if (prev.days > 0) {
-          return {
-            ...prev,
-            days: prev.days - 1,
-            hours: 23,
-            minutes: 59,
-            seconds: 59
-          };
-        }
-        return prev;
-      });
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
   const benefits = ["Lifetime 70% discount (Save $2,100+ monthly)", "Priority implementation & support", "Exclusive founding member community access", "Direct input on feature development", "No setup fees or hidden costs", "30-day money-back guarantee"];
@@ -65,7 +60,7 @@ const PreSaleSection = () => {
           </h2>
           
           <p className="text-large text-primary-foreground/80 max-w-5xl mx-auto leading-relaxed">
-            This is your exclusive opportunity to get lifetime access to our AI Voice Agent Platform 
+            This is your exclusive opportunity to get lifetime access to Dialo 
             at an unprecedented 70% discount. Help us validate demand and fund initial development.
           </p>
         </div>

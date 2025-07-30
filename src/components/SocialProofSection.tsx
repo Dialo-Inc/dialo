@@ -67,14 +67,25 @@ const SocialProofSection = () => {
         
         <div className="bg-gradient-primary rounded-3xl p-12 lg:p-16 text-primary-foreground text-center shadow-premium-xl">
           <h3 className="heading-sm mb-8">
-            Powered by Advanced Voice Infrastructure
+            Partnership with Vapi AI
           </h3>
           <p className="text-large mb-12 opacity-90 max-w-5xl mx-auto leading-relaxed">
-            Dialo is built on cutting-edge voice technology designed for seamless, real-time conversations. This infrastructure allows us to deliver hyper-responsive voice interactions, intelligent call routing, and native integration with dealership systems. Our technology stack is optimized specifically for the automotive industry—giving your customers the experience they expect, and your team the support they deserve.
+            Our AI Voice Agent Platform is built in partnership with Vapi AI, industry leaders in conversational AI technology. 
+            Together, we've created a solution specifically designed for the unique challenges of automotive dealerships.
           </p>
           
+          <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto border border-primary-foreground/20">
+            <p className="text-large mb-6 opacity-90 leading-relaxed">
+              "The automotive industry needed a specialized AI solution that understands the complexity of dealership operations. 
+              Our partnership delivers exactly that - intelligent, context-aware conversations that drive real business results."
+            </p>
+            <div className="opacity-75 font-medium">
+              — Vapi AI Engineering Team
+            </div>
+          </div>
+          
           <div className="mt-12">
-            <Badge className="bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30 px-8 py-3 text-lg">Built on Industry-Leading Voice Technology</Badge>
+            <Badge className="bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30 px-8 py-3 text-lg">Powered by Industry-Leading AI Technology</Badge>
           </div>
         </div>
       </div>

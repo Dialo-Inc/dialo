@@ -4,20 +4,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 const FAQSection = () => {
   const faqs = [
     {
-      question: "What is Dialo Voice Agent?",
-      answer: "Dialo is an embeddable AI voice agent purpose-built for modern auto dealerships. It integrates directly with your dealership's website, phone system, DMS (Dealer Management System), and CRM. It enables customized-scalability communication with your customers handling both inbound and outbound calls with human-level natural conversation. Think of it as your 24/7 customer communication assistant, tailored to the car-buying journey."
+      question: "What is an AI Voice Agent?",
+      answer: "An AI Voice Agent is an intelligent conversational AI system that can interact with customers through voice and text across multiple channels. Our agent is specifically trained on automotive industry data to handle inquiries about sales, service, parts, and scheduling with human-like understanding and responses."
     },
     {
       question: "How does it integrate with my existing systems?",
-      answer: "Dialo seamlessly integrates with your Dealership Management System (DMS) and CRM, adding intelligence to your data. This enables more personalized and contextual conversations with every lead or customer without the need for manual input or data duplication."
+      answer: "Our AI Voice Agent seamlessly integrates with your dealership's website, phone system, and CRM through secure APIs. The integration process typically takes 24-48 hours with minimal disruption to your operations. Our technical team handles the entire setup process for you."
     },
     {
       question: "Will this replace my human staff?",
-      answer: "No, Dialo is built to assist your team not replace them. It handles repetitive and time-consuming conversations, freeing your staff to focus on high-value tasks."
+      answer: "Absolutely not. Our AI Voice Agent is designed to enhance your team's capabilities, not replace them. It handles routine inquiries and qualifies leads, freeing your staff to focus on high-value interactions like closing deals and providing personalized customer service that requires human expertise."
     },
     {
       question: "What happens after I pre-order?",
-      answer: "After pre-ordering, you'll receive immediate confirmation and access to our founding member community. We'll keep you updated on your pre-order access and onboarding steps and provide early access to beta features. Once we reach our funding goal, full development begins with your system integration scheduled within 60 days."
+      answer: "After pre-ordering, you'll receive immediate confirmation and access to our founding member community. We'll keep you updated on development progress and provide early access to beta features. Once we reach our funding goal, full development begins with your system integration scheduled within 60 days."
+    },
+    {
+      question: "When will the product be ready?",
+      answer: "Full product launch is scheduled for Q2 2024, contingent on reaching our $200,000 pre-sale goal. Beta access will be available to founding members 30 days prior to full launch. We provide monthly progress updates and maintain transparent communication throughout development."
     },
     {
       question: "What kind of support do you provide?",
@@ -68,7 +72,7 @@ const FAQSection = () => {
               Still Have Questions?
             </h3>
             <p className="text-large text-muted-foreground mb-8 leading-relaxed">
-              Our team is standing by to answer any additional questions about Dialo 
+              Our team is standing by to answer any additional questions about the AI Voice Agent Platform 
               and how it can transform your dealership's operations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

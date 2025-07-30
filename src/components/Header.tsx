@@ -24,9 +24,6 @@ const Header = () => {
           </div>
           
           <nav className="hidden lg:flex items-center space-x-8">
-            <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
-              About
-            </a>
             <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
               Benefits
             </a>
@@ -35,12 +32,6 @@ const Header = () => {
             </a>
             <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
               Pricing
-            </a>
-            <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
-              Blog
-            </a>
-            <a href="/contact" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
-              Contact
             </a>
           </nav>
           
@@ -65,9 +56,6 @@ const Header = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-background/95 backdrop-blur-md border-t border-border/50">
           <div className="px-4 py-6 space-y-4">
-            <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
-              About
-            </a>
             <a href="#benefits" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
               Benefits
             </a>
@@ -76,12 +64,6 @@ const Header = () => {
             </a>
             <a href="#pricing" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
               Pricing
-            </a>
-            <a href="/blog" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
-              Blog
-            </a>
-            <a href="/contact" className="block text-muted-foreground hover:text-foreground transition-colors font-medium">
-              Contact
             </a>
             <div className="pt-4 space-y-2">
               <Button variant="ghost" className="w-full justify-start text-muted-foreground hover:text-foreground">

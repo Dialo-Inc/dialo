@@ -72,7 +72,7 @@ const FAQSection = () => {
               and how it can transform your dealership's operations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:info@dealership-ai-platform.com" className="inline-flex items-center justify-center px-8 py-4 bg-accent text-accent-foreground rounded-2xl hover:bg-accent-hover transition-all duration-300 font-semibold text-lg shadow-premium-sm hover:shadow-premium-md hover:scale-105">
+              <a href="mailto:info@usedialo.com" className="inline-flex items-center justify-center px-8 py-4 bg-accent text-accent-foreground rounded-2xl hover:bg-accent-hover transition-all duration-300 font-semibold text-lg shadow-premium-sm hover:shadow-premium-md hover:scale-105">
                 Email Our Team
               </a>
               <a href="tel:1-800-AI-VOICE" className="inline-flex items-center justify-center px-8 py-4 border border-border text-foreground rounded-2xl hover:bg-secondary transition-all duration-300 font-semibold text-lg shadow-premium-sm hover:shadow-premium-md hover:scale-105">

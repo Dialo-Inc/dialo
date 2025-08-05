@@ -13,30 +13,30 @@ const HeroSection = () => {
         }}></div>
       </div>
       
-      <div className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative container mx-auto px-3 sm:px-6 py-8 sm:py-16 lg:py-24">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
-            <Badge className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground border-border/50 px-4 py-2 text-sm font-medium">
-              <Users className="w-4 h-4" />
+          <div className="text-center lg:text-left space-y-6 lg:space-y-8 animate-fade-in-up px-2 sm:px-0">
+            <Badge className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground border-border/50 px-3 py-1.5 text-xs sm:text-sm font-medium">
+              <Users className="w-3 h-3 sm:w-4 sm:h-4" />
               Trusted by 50+ Early Adopters
             </Badge>
             
-            <div className="space-y-6">
-              <h1 className="heading-xl text-foreground leading-[1.1]">
+            <div className="space-y-4 lg:space-y-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
                 Stop Losing{' '}
                 <span className="relative">
                   <span className="text-accent">70% of Your</span>
-                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-accent/20 rounded-full"></div>
+                  <div className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-0.5 lg:h-1 bg-accent/20 rounded-full"></div>
                 </span>{' '}
                 Service Revenue
               </h1>
               
-              <p className="text-large text-muted-foreground font-medium max-w-2xl">
+              <p className="text-base sm:text-lg md:text-xl lg:text-xl text-muted-foreground font-medium max-w-2xl mx-auto lg:mx-0">
                 The AI Voice Agent That Transforms Dealership Communication
               </p>
               
-              <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Dialo seamlessly integrates to boost sales, enhance CSI, and cut costs. 
                 Pre-order now for a{' '}
                 <strong className="text-accent font-semibold">lifetime 70% discount</strong>{' '}
@@ -44,46 +44,47 @@ const HeroSection = () => {
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0">
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent-hover text-accent-foreground px-8 py-6 text-lg font-semibold btn-premium shadow-premium-lg"
+                className="bg-accent hover:bg-accent-hover text-accent-foreground px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg font-semibold btn-premium shadow-premium-lg w-full sm:w-auto"
               >
-                Secure Your 70% Lifetime Discount Now
+                <span className="hidden sm:inline">Secure Your 70% Lifetime Discount Now</span>
+                <span className="sm:hidden">Get 70% Discount Now</span>
               </Button>
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-border bg-background hover:bg-secondary px-8 py-6 text-lg group"
+                className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto"
               >
-                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Watch Demo
               </Button>
             </div>
           </div>
           
           {/* Right Content - AI Demo */}
-          <div className="relative mt-8 lg:mt-0 animate-slide-in-right">
-            <div className="relative bg-card border border-border rounded-2xl p-6 lg:p-8 shadow-premium-xl">
+          <div className="relative mt-6 lg:mt-0 animate-slide-in-right px-2 sm:px-0">
+            <div className="relative bg-card border border-border rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-premium-xl">
               {/* Status indicator */}
-              <div className="absolute top-4 right-4 flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-muted-foreground">Live Demo</span>
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 sm:gap-2">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full animate-pulse"></div>
+                <span className="text-xs sm:text-sm font-medium text-muted-foreground">Live Demo</span>
               </div>
               
               {/* Demo interface */}
-              <div className="bg-secondary/50 rounded-xl p-6 mb-6 min-h-[300px] flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
-                  <span className="text-accent text-sm font-semibold tracking-wider uppercase">AI Agent Active</span>
+              <div className="bg-secondary/50 rounded-lg lg:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] flex flex-col justify-center">
+                <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full animate-pulse"></div>
+                  <span className="text-accent text-xs sm:text-sm font-semibold tracking-wider uppercase">AI Agent Active</span>
                 </div>
                 
                 {/* AI Voice Input Component */}
                 <div className="flex-1 flex items-center justify-center">
                   <AIVoiceInput 
                     demoMode={false} 
-                    visualizerBars={32} 
-                    className="text-foreground" 
+                    visualizerBars={24} 
+                    className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
                     assistantId="demo-dealership-agent" 
                     onStart={() => console.log('Voice demo started')} 
                     onStop={duration => console.log('Voice demo ended, duration:', duration)} 
@@ -92,13 +93,13 @@ const HeroSection = () => {
               </div>
               
               {/* Stats */}
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div className="p-3 bg-secondary/30 rounded-lg">
-                  <div className="text-lg font-bold text-foreground">0.6s</div>
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 text-center">
+                <div className="p-2 sm:p-3 bg-secondary/30 rounded-md lg:rounded-lg">
+                  <div className="text-base sm:text-lg font-bold text-foreground">0.6s</div>
                   <div className="text-xs text-muted-foreground">Response Time</div>
                 </div>
-                <div className="p-3 bg-secondary/30 rounded-lg">
-                  <div className="text-lg font-bold text-foreground">99.5%</div>
+                <div className="p-2 sm:p-3 bg-secondary/30 rounded-md lg:rounded-lg">
+                  <div className="text-base sm:text-lg font-bold text-foreground">99.5%</div>
                   <div className="text-xs text-muted-foreground">Satisfaction</div>
                 </div>
               </div>

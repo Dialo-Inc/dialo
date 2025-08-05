@@ -22,19 +22,19 @@ const BenefitsSection = () => {
     metric: "60%",
     description: "Automate routine inquiries and tasks, allowing your valuable staff to focus on complex customer needs and closing deals, not administrative burdens."
   }];
-  return <section className="py-24 bg-secondary/30 relative overflow-hidden">
+  return <section className="py-12 sm:py-16 lg:py-24 bg-secondary/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background opacity-80" />
-      <div className="container mx-auto px-6 relative">
-        <div className="text-center mb-20">
-          <h2 className="heading-lg text-foreground mb-8">
+      <div className="container mx-auto px-3 sm:px-6 relative">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6 sm:mb-8 px-2">
             Drive Revenue, Boost Satisfaction, <span className="text-accent">Maximize Efficiency</span>
           </h2>
-          <p className="text-large text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-2">
             The Tangible Impact: Quantifiable results that transform your dealership's bottom line
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-20">
           {benefits.map((benefit, index) => <Card key={index} className="group bg-card/50 backdrop-blur-sm border-border/50 shadow-premium-md hover:shadow-premium-xl transition-all duration-500 hover:scale-105 hover:bg-card relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-accent/20 rounded-bl-3xl opacity-50"></div>

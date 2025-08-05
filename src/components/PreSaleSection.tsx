@@ -10,24 +10,26 @@ const PreSaleSection = () => {
     minutes: 0,
     seconds: 0
   });
-
   useEffect(() => {
     const calculateTimeLeft = () => {
       // Fixed launch date: August 31, 2025 at 11:59 PM UTC
       const launchDate = new Date('2025-08-31T23:59:59.999Z');
       const now = new Date();
       const difference = launchDate.getTime() - now.getTime();
-
       if (difference > 0) {
         return {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
+          hours: Math.floor(difference / (1000 * 60 * 60) % 24),
+          minutes: Math.floor(difference / 1000 / 60 % 60),
+          seconds: Math.floor(difference / 1000 % 60)
         };
       }
-      
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
     };
 
     // Update immediately
@@ -37,7 +39,6 @@ const PreSaleSection = () => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
   const benefits = ["Lifetime 70% discount (Save $2,100+ monthly)", "Priority implementation & support", "Exclusive founding member community access", "Direct input on feature development", "No setup fees or hidden costs", "30-day money-back guarantee"];
@@ -107,7 +108,7 @@ const PreSaleSection = () => {
               <div className="text-center space-y-6">
                 <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-6 border border-primary-foreground/20">
                   <div className="text-primary-foreground/60 line-through mb-2">Regular Price: $3,000/month</div>
-                  <div className="text-4xl font-bold text-accent mb-2">Pre-Sale: $1,000/month</div>
+                  <div className="text-4xl font-bold text-accent mb-2">Pre-Sale: $900/month</div>
                   <div className="text-primary-foreground/80">Lifetime price lock guaranteed</div>
                 </div>
                 

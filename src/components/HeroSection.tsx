@@ -2,22 +2,20 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Users, Play } from 'lucide-react';
 import { AIVoiceInput } from '@/components/ui/ai-voice-input';
-
 const HeroSection = () => {
-  return (
-    <section className="relative overflow-hidden bg-background pt-16 min-h-screen flex items-center">
+  return <section className="relative overflow-hidden bg-background pt-16 min-h-screen flex items-center">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="h-full w-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       </div>
       
       <div className="relative container mx-auto px-3 sm:px-6 py-8 sm:py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 animate-fade-in-up px-2 sm:px-0">
-            <Badge className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground border-border/50 px-3 py-1.5 text-xs sm:text-sm font-medium">
+            <Badge className="inline-flex items-center gap-2 text-secondary-foreground border-border/50 px-3 py-1.5 text-xs sm:text-sm font-medium bg-slate-200">
               <Users className="w-3 h-3 sm:w-4 sm:h-4" />
               Trusted by 50+ Early Adopters
             </Badge>
@@ -45,18 +43,11 @@ const HeroSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0">
-              <Button 
-                size="lg" 
-                className="bg-accent hover:bg-accent-hover text-accent-foreground px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg font-semibold btn-premium shadow-premium-lg w-full sm:w-auto"
-              >
+              <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg font-semibold btn-premium shadow-premium-lg w-full sm:w-auto">
                 <span className="hidden sm:inline">Secure Your 70% Lifetime Discount Now</span>
                 <span className="sm:hidden">Get 70% Discount Now</span>
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto"
-              >
+              <Button variant="outline" size="lg" className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto">
                 <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Watch Demo
               </Button>
@@ -81,14 +72,7 @@ const HeroSection = () => {
                 
                 {/* AI Voice Input Component */}
                 <div className="flex-1 flex items-center justify-center">
-                  <AIVoiceInput 
-                    demoMode={false} 
-                    visualizerBars={24} 
-                    className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
-                    assistantId="demo-dealership-agent" 
-                    onStart={() => console.log('Voice demo started')} 
-                    onStop={duration => console.log('Voice demo ended, duration:', duration)} 
-                  />
+                  <AIVoiceInput demoMode={false} visualizerBars={24} className="text-foreground scale-75 sm:scale-90 lg:scale-100" assistantId="demo-dealership-agent" onStart={() => console.log('Voice demo started')} onStop={duration => console.log('Voice demo ended, duration:', duration)} />
                 </div>
               </div>
               
@@ -116,7 +100,6 @@ const HeroSection = () => {
           <ArrowDown className="w-6 h-6 mx-auto text-muted-foreground animate-bounce" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 export default HeroSection;

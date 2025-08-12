@@ -1,8 +1,52 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Building, Users, Zap } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ArrowRight, Building, Users, Zap, Clock, CheckCircle } from 'lucide-react';
 
 const ParagonHondaPreSaleSection = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      // Fixed launch date: August 31, 2025 at 11:59 PM UTC
+      const launchDate = new Date('2025-08-31T23:59:59.999Z');
+      const now = new Date();
+      const difference = launchDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        return {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        };
+      }
+
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+    };
+
+    // Update immediately
+    setTimeLeft(calculateTimeLeft());
+
+    // Update every second
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const advantages = [
     {
       icon: Building,
@@ -98,9 +142,82 @@ const ParagonHondaPreSaleSection = () => {
             <ArrowRight className="w-6 h-6 ml-4" />
           </Button>
           
-          <p className="text-sm sm:text-base text-primary-foreground/70 mt-6 max-w-2xl mx-auto leading-relaxed px-2">
+          <p className="text-sm sm:text-base text-primary-foreground/70 mt-6 max-w-2xl mx-auto leading-relaxed px-2 mb-16">
             Transform your dealership communication today. Your customers are waiting, and your competitors are planning.
           </p>
+        </div>
+        
+        {/* Countdown Timer and Offer Section */}
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <Badge className="mb-6 sm:mb-8 bg-destructive/20 text-destructive-foreground border-destructive/30 text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3 shadow-premium-sm">
+            <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
+            Limited-Time Implementation Offer
+          </Badge>
+        </div>
+        
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
+          <Card className="bg-destructive/10 border-destructive/30 backdrop-blur-sm shadow-premium-lg">
+            <CardHeader>
+              <CardTitle className="text-center text-lg sm:text-xl lg:text-2xl text-destructive">Offer Expires In</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="group">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-destructive group-hover:scale-110 transition-transform duration-300">{timeLeft.days}</div>
+                  <div className="text-xs sm:text-sm text-primary-foreground/60">Days</div>
+                </div>
+                <div className="group">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-destructive group-hover:scale-110 transition-transform duration-300">{timeLeft.hours}</div>
+                  <div className="text-xs sm:text-sm text-primary-foreground/60">Hours</div>
+                </div>
+                <div className="group">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-destructive group-hover:scale-110 transition-transform duration-300">{timeLeft.minutes}</div>
+                  <div className="text-xs sm:text-sm text-primary-foreground/60">Minutes</div>
+                </div>
+                <div className="group">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-destructive group-hover:scale-110 transition-transform duration-300">{timeLeft.seconds}</div>
+                  <div className="text-xs sm:text-sm text-primary-foreground/60">Seconds</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-accent/10 border-accent/30 backdrop-blur-sm shadow-premium-lg">
+            <CardHeader>
+              <CardTitle className="text-center text-lg sm:text-xl lg:text-2xl text-accent">Offer</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">Complete AI agent implementation & training</span>
+                </div>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">Custom voice & personality tailored to Paragon Honda</span>
+                </div>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">Integration with existing CRM & DMS systems</span>
+                </div>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">30-day performance guarantee</span>
+                </div>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">Priority support & ongoing optimization</span>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 sm:p-6 border border-primary-foreground/20 mb-4">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-1 sm:mb-2">Start Today</div>
+                  <div className="text-sm sm:text-base text-primary-foreground/80">Full implementation in 14 days</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

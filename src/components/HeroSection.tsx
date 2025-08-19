@@ -72,7 +72,14 @@ const HeroSection = () => {
                 
                 {/* AI Voice Input Component */}
                 <div className="flex-1 flex items-center justify-center">
-                  <AIVoiceInput demoMode={false} visualizerBars={24} className="text-foreground scale-75 sm:scale-90 lg:scale-100" assistantId="demo-dealership-agent" onStart={() => console.log('Voice demo started')} onStop={duration => console.log('Voice demo ended, duration:', duration)} />
+                  <AIVoiceInput 
+                    demoMode={false} 
+                    visualizerBars={24} 
+                    className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
+                    assistantId={import.meta.env.VITE_GENERAL_ASSISTANT_ID || "demo-dealership-agent"} 
+                    onStart={() => console.log('General voice demo started')} 
+                    onStop={duration => console.log('General voice demo ended, duration:', duration)} 
+                  />
                 </div>
               </div>
               

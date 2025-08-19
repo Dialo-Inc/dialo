@@ -18,8 +18,9 @@ export class VapiService {
   private isConnected: boolean = false;
   
   constructor() {
-    // Using your actual Vapi public key
-    this.vapi = new Vapi('0d0d4095-54ea-4274-a6f2-bcadd485dff3');
+    // Using environment variable or fallback to hardcoded key
+    const vapiPublicKey = import.meta.env.VITE_VAPI_PUBLIC_KEY || '0d0d4095-54ea-4274-a6f2-bcadd485dff3';
+    this.vapi = new Vapi(vapiPublicKey);
     this.setupEventListeners();
   }
 
@@ -142,29 +143,34 @@ export class VapiService {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       console.log('Microphone permission granted');
       
-      // Create assistant configuration with proper typing
-      const assistantConfig = {
-        model: {
-          provider: 'openai' as const,
-          model: 'gpt-3.5-turbo' as const,
-          messages: [
-            {
-              role: 'system' as const,
-              content: 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
-            }
-          ]
-        },
-        voice: {
-          provider: 'playht' as const,
-          voiceId: 'jennifer' as const
-        },
-        firstMessage: 'Hello! I\'m your AI assistant. How can I help you today?'
-      };
+      if (assistantId) {
+        // Use the dashboard assistant ID directly
+        console.log('Starting call with dashboard assistant ID:', assistantId);
+        await this.vapi.start(assistantId);
+      } else {
+        // Fallback to hardcoded configuration if no assistant ID provided
+        const assistantConfig = {
+          model: {
+            provider: 'openai' as const,
+            model: 'gpt-3.5-turbo' as const,
+            messages: [
+              {
+                role: 'system' as const,
+                content: 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
+              }
+            ]
+          },
+          voice: {
+            provider: 'playht' as const,
+            voiceId: 'jennifer' as const
+          },
+          firstMessage: 'Hello! I\'m your AI assistant. How can I help you today?'
+        };
+        
+        console.log('Starting call with fallback assistant config:', assistantConfig);
+        await this.vapi.start(assistantConfig as any);
+      }
       
-      console.log('Starting call with assistant config:', assistantConfig);
-      
-      // Start the call with the assistant configuration
-      await this.vapi.start(assistantConfig as any);
       console.log('Vapi start method called successfully');
       
     } catch (error) {

@@ -65,7 +65,7 @@ const ParagonHondaHeroSection = () => {
                     demoMode={false} 
                     visualizerBars={24} 
                     className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
-                    assistantId="paragon-honda-agent" 
+                    assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID || "paragon-honda-agent"} 
                     onStart={() => console.log('Paragon Honda voice demo started')} 
                     onStop={duration => console.log('Paragon Honda voice demo ended, duration:', duration)} 
                   />

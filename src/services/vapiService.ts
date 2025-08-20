@@ -143,12 +143,12 @@ export class VapiService {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       console.log('Microphone permission granted');
       
-      if (assistantId) {
+      if (assistantId && assistantId !== "demo-dealership-agent" && assistantId !== "paragon-honda-agent") {
         // Use the dashboard assistant ID directly
         console.log('Starting call with dashboard assistant ID:', assistantId);
         await this.vapi.start(assistantId);
       } else {
-        // Fallback to hardcoded configuration if no assistant ID provided
+        // Fallback to hardcoded configuration if no valid assistant ID provided
         const assistantConfig = {
           model: {
             provider: 'openai' as const,
@@ -156,7 +156,9 @@ export class VapiService {
             messages: [
               {
                 role: 'system' as const,
-                content: 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
+                content: assistantId === "paragon-honda-agent" 
+                  ? 'You are a helpful AI assistant for Paragon Honda dealership. You help customers with questions about Honda vehicles, scheduling service appointments, and general inquiries. Be friendly, professional, and concise. Focus on Honda-specific features and services.'
+                  : 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
               }
             ]
           },
@@ -164,10 +166,12 @@ export class VapiService {
             provider: 'playht' as const,
             voiceId: 'jennifer' as const
           },
-          firstMessage: 'Hello! I\'m your AI assistant. How can I help you today?'
+          firstMessage: assistantId === "paragon-honda-agent" 
+            ? 'Hello! I\'m your Paragon Honda AI assistant. How can I help you with your Honda needs today?'
+            : 'Hello! I\'m your AI assistant. How can I help you today?'
         };
         
-        console.log('Starting call with fallback assistant config:', assistantConfig);
+        console.log('Starting call with assistant config:', assistantConfig);
         await this.vapi.start(assistantConfig as any);
       }
       
@@ -180,6 +184,39 @@ export class VapiService {
       let errorMessage = 'Failed to start voice call';
       if (error instanceof Error) {
         errorMessage = error.message;
+        
+        // Handle specific Vapi errors
+        if (errorMessage.includes('Invalid Key') || errorMessage.includes('invalid key')) {
+          errorMessage = 'Invalid API key. Please check your Vapi configuration.';
+        } else if (errorMessage.includes('assistantId must be a UUID')) {
+          errorMessage = 'Invalid assistant ID format. Using fallback configuration.';
+          // Try again with fallback config
+          try {
+            const fallbackConfig = {
+              model: {
+                provider: 'openai' as const,
+                model: 'gpt-3.5-turbo' as const,
+                messages: [
+                  {
+                    role: 'system' as const,
+                    content: 'You are a helpful AI assistant for a car dealership. You help customers with questions about vehicles, scheduling appointments, and general inquiries. Be friendly, professional, and concise.'
+                  }
+                ]
+              },
+              voice: {
+                provider: 'playht' as const,
+                voiceId: 'jennifer' as const
+              },
+              firstMessage: 'Hello! I\'m your AI assistant. How can I help you today?'
+            };
+            
+            await this.vapi.start(fallbackConfig as any);
+            return; // Success with fallback
+          } catch (fallbackError) {
+            console.error('Fallback config also failed:', fallbackError);
+            errorMessage = 'Unable to start voice call. Please try again.';
+          }
+        }
       } else if (typeof error === 'string') {
         errorMessage = error;
       }

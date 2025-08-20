@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Building, Users, Zap, Clock, CheckCircle } from 'lucide-react';
-
 const ParagonHondaPreSaleSection = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -11,23 +10,20 @@ const ParagonHondaPreSaleSection = () => {
     minutes: 0,
     seconds: 0
   });
-
   useEffect(() => {
     const calculateTimeLeft = () => {
       // Fixed launch date: August 31, 2025 at 11:59 PM UTC
       const launchDate = new Date('2025-08-31T23:59:59.999Z');
       const now = new Date();
       const difference = launchDate.getTime() - now.getTime();
-
       if (difference > 0) {
         return {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
+          hours: Math.floor(difference / (1000 * 60 * 60) % 24),
+          minutes: Math.floor(difference / 1000 / 60 % 60),
+          seconds: Math.floor(difference / 1000 % 60)
         };
       }
-
       return {
         days: 0,
         hours: 0,
@@ -43,34 +39,26 @@ const ParagonHondaPreSaleSection = () => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
-
-  const advantages = [
-    {
-      icon: Building,
-      title: "Inventory",
-      description: "Quality vehicles and comprehensive selection"
-    },
-    {
-      icon: Users,
-      title: "Team",
-      description: "Experienced sales and service professionals"
-    },
-    {
-      icon: Zap,
-      title: "Brand",
-      description: "Trusted Honda reputation and customer loyalty"
-    }
-  ];
-
-  return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-primary text-primary-foreground relative overflow-hidden">
+  const advantages = [{
+    icon: Building,
+    title: "Inventory",
+    description: "Quality vehicles and comprehensive selection"
+  }, {
+    icon: Users,
+    title: "Team",
+    description: "Experienced sales and service professionals"
+  }, {
+    icon: Zap,
+    title: "Brand",
+    description: "Trusted Honda reputation and customer loyalty"
+  }];
+  return <section className="py-12 sm:py-16 lg:py-24 bg-gradient-primary text-primary-foreground relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="h-full w-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       </div>
       
       <div className="relative container mx-auto px-3 sm:px-6">
@@ -117,15 +105,13 @@ const ParagonHondaPreSaleSection = () => {
           </h3>
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {advantages.map((advantage, index) => (
-              <div key={index} className="text-center group">
+            {advantages.map((advantage, index) => <div key={index} className="text-center group">
                 <div className="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-premium-sm">
                   <advantage.icon className="w-10 h-10 text-accent-foreground" />
                 </div>
                 <h4 className="text-xl font-bold text-accent mb-3">{advantage.title}</h4>
                 <p className="text-primary-foreground/80">{advantage.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           <div className="text-center">
@@ -190,7 +176,7 @@ const ParagonHondaPreSaleSection = () => {
               <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <div className="flex items-start gap-3 sm:gap-4">
                   <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">Complete AI agent implementation & training</span>
+                  <span className="text-sm sm:text-base text-primary-foreground/90 leading-relaxed">Complete AI agent implementation </span>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4">
                   <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 mt-0.5" />
@@ -220,8 +206,6 @@ const ParagonHondaPreSaleSection = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ParagonHondaPreSaleSection;

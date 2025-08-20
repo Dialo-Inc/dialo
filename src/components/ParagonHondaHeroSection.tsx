@@ -2,15 +2,13 @@ import { Button } from '@/components/ui/button';
 import { ArrowDown, Play } from 'lucide-react';
 import { AIVoiceInput } from '@/components/ui/ai-voice-input';
 import { AIAgentDialog } from '@/components/ui/ai-agent-dialog';
-
 const ParagonHondaHeroSection = () => {
-  return (
-    <section className="relative overflow-hidden bg-background pt-16 min-h-screen flex items-center">
+  return <section className="relative overflow-hidden bg-background pt-16 min-h-screen flex items-center">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="h-full w-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       </div>
       
       <div className="relative container mx-auto px-3 sm:px-6 py-8 sm:py-16 lg:py-24">
@@ -38,10 +36,7 @@ const ParagonHondaHeroSection = () => {
                   Try the AI Agent
                 </Button>
               </AIAgentDialog>
-              <Button variant="outline" size="lg" className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto">
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:scale-110 transition-transform" />
-                Watch Demo
-              </Button>
+              
             </div>
           </div>
           
@@ -63,14 +58,7 @@ const ParagonHondaHeroSection = () => {
                 
                 {/* AI Voice Input Component */}
                 <div className="flex-1 flex items-center justify-center">
-                  <AIVoiceInput 
-                    demoMode={false} 
-                    visualizerBars={24} 
-                    className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
-                    assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID || "e2e9e24a-87de-416c-a55d-89aff7ac1fff"} 
-                    onStart={() => console.log('Paragon Honda voice demo started')} 
-                    onStop={duration => console.log('Paragon Honda voice demo ended, duration:', duration)} 
-                  />
+                  <AIVoiceInput demoMode={false} visualizerBars={24} className="text-foreground scale-75 sm:scale-90 lg:scale-100" assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID || "e2e9e24a-87de-416c-a55d-89aff7ac1fff"} onStart={() => console.log('Paragon Honda voice demo started')} onStop={duration => console.log('Paragon Honda voice demo ended, duration:', duration)} />
                 </div>
               </div>
               
@@ -98,8 +86,6 @@ const ParagonHondaHeroSection = () => {
           <ArrowDown className="w-6 h-6 mx-auto text-muted-foreground animate-bounce" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ParagonHondaHeroSection;

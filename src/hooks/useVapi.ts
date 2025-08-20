@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { vapiService, VapiCallState } from '@/services/vapiService';
 
-export const useVapi = () => {
+export const useVapi = (assistantId?: string) => {
   const [callState, setCallState] = useState<VapiCallState>({
     isConnected: false,
     isListening: false,
@@ -61,9 +61,9 @@ export const useVapi = () => {
     if (callState.isConnected) {
       await endCall();
     } else {
-      await startCall();
+      await startCall(assistantId);
     }
-  }, [callState.isConnected, startCall, endCall]);
+  }, [callState.isConnected, startCall, endCall, assistantId]);
 
   return {
     callState,

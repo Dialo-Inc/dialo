@@ -27,7 +27,7 @@ export function AIVoiceInput({
 }: AIVoiceInputProps) {
   const [isClient, setIsClient] = useState(false);
   const [isDemo, setIsDemo] = useState(demoMode);
-  const { callState, isLoading, permissionGranted, toggleCall, checkMicrophonePermission } = useVapi();
+  const { callState, isLoading, permissionGranted, toggleCall, checkMicrophonePermission } = useVapi(assistantId);
 
   useEffect(() => {
     setIsClient(true);

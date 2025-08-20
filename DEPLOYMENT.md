@@ -1,46 +1,75 @@
-# Deployment Guide
+# Vercel Deployment Guide
 
-## Vercel Deployment with Custom Domain
+## About Vercel Free Tier
 
-### 1. GitHub Setup
-1. Connect your Lovable project to GitHub (use the GitHub button in Lovable)
-2. This creates a new repository with your project code
-3. Clone the repository locally if needed
+✅ **Yes, Vercel's free tier can absolutely host this type of landing page!**
 
-### 2. Environment Variables
-Before deploying, set up your environment variables:
+### What's Included in Vercel Free Tier:
+- **100GB Bandwidth** per month
+- **Unlimited Static Sites** (React, Vue, etc.)
+- **Automatic HTTPS** with SSL certificates
+- **Global CDN** for fast loading worldwide
+- **Custom Domains** (bring your own domain)
+- **Git Integration** (GitHub, GitLab, Bitbucket)
+- **Preview Deployments** for every pull request
+- **Analytics** (basic)
 
-#### In Vercel Dashboard:
-1. Go to your project settings → Environment Variables
-2. Add these variables:
-   - `VITE_VAPI_PUBLIC_KEY`: Your Vapi public key
-   - `VITE_GENERAL_ASSISTANT_ID`: Assistant ID for main landing page
-   - `VITE_PARAGON_HONDA_ASSISTANT_ID`: Assistant ID for Paragon Honda page
+### Perfect for This Project Because:
+- ✅ Static React site with no backend requirements
+- ✅ Small bundle size with optimized assets
+- ✅ Minimal bandwidth usage for landing pages
+- ✅ Professional hosting with enterprise-level performance
 
-#### For Local Development:
-1. Copy `.env.example` to `.env.local`
-2. Fill in your actual values
+## Deployment Steps
 
-### 3. Vercel Deployment
-1. Connect your GitHub repository to Vercel
-2. Configure build settings:
-   - Framework Preset: `Vite`
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-   - Install Command: `npm ci`
+### 1. Environment Variables Setup
+Create these environment variables in your Vercel dashboard:
 
-### 4. Custom Domain Setup
-1. In Vercel project settings, go to "Domains"
-2. Add your custom domain: `dialo.com`
-3. Configure DNS at your domain registrar:
-   - Add A record pointing to Vercel's IP
-   - Add CNAME for www subdomain
-4. Vercel will automatically handle SSL certificates
+```bash
+VITE_VAPI_PUBLIC_KEY=your_vapi_public_key_here
+VITE_GENERAL_ASSISTANT_ID=your_general_assistant_id_here  
+VITE_PARAGON_HONDA_ASSISTANT_ID=e2e9e24a-87de-416c-a55d-89aff7ac1fff
+```
 
-### 5. Route Configuration
-The app automatically supports:
-- `dialo.com/` → General landing page (Index component)
-- `dialo.com/ParagonHonda` → Paragon Honda microsite
+### 2. Deploy to Vercel
+
+#### Option A: Vercel CLI
+```bash
+npm install -g vercel
+vercel --prod
+```
+
+#### Option B: Git Integration
+1. Push your code to GitHub
+2. Connect your GitHub repo to Vercel
+3. Automatic deployments on every push
+
+#### Option C: Drag & Drop
+1. Run `npm run build`
+2. Drag the `dist` folder to Vercel dashboard
+
+### 3. Custom Domain (Optional)
+- Add your custom domain in Vercel dashboard
+- Update DNS records as instructed
+- SSL certificate auto-generated
+
+### 4. Performance Optimizations Already Included
+- ✅ Code splitting with Vite
+- ✅ Asset optimization and compression
+- ✅ Lazy loading for images
+- ✅ Tree shaking for smaller bundles
+- ✅ CSS optimization with Tailwind
+
+## Routes Configuration
+
+Your app supports these routes:
+- `/` - Main landing page
+- `/ParagonHonda` - Paragon Honda microsite
+- `/privacy` - Privacy Policy
+- `/terms` - Terms of Service  
+- `/cookies` - Cookie Policy
+
+All routes will work correctly with Vercel's automatic SPA routing.
 
 ### 6. Testing
 After deployment, test both routes:

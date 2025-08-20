@@ -12,13 +12,6 @@ const Footer = () => {
                 Join the revolution and secure your competitive advantage today.
               </p>
             </div>
-            
-            <div className="space-y-3 text-lg">
-              <p className="text-primary-foreground/60 font-medium">Contact Information:</p>
-              <p className="text-primary-foreground hover:text-accent transition-colors cursor-pointer">Email: info@usedialo.com</p>
-              <p className="text-primary-foreground hover:text-accent transition-colors cursor-pointer">Phone: 1-800-AI-VOICE</p>
-              <p className="text-primary-foreground">Address: San Francisco, CA</p>
-            </div>
           </div>
           
           <div>

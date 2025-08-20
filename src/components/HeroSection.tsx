@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDown, Users, Play } from 'lucide-react';
 import { AIVoiceInput } from '@/components/ui/ai-voice-input';
+import { AIAgentDialog } from '@/components/ui/ai-agent-dialog';
 const HeroSection = () => {
   return <section className="relative overflow-hidden bg-background pt-16 min-h-screen flex items-center">
       {/* Subtle background pattern */}
@@ -47,10 +48,11 @@ const HeroSection = () => {
                 <span className="hidden sm:inline">Secure Your 70% Lifetime Discount Now</span>
                 <span className="sm:hidden">Get 70% Discount Now</span>
               </Button>
-              <Button variant="outline" size="lg" className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto">
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:scale-110 transition-transform" />
-                Watch Demo
-              </Button>
+              <AIAgentDialog assistantId={import.meta.env.VITE_GENERAL_ASSISTANT_ID || "demo-dealership-agent"}>
+                <Button variant="outline" size="lg" className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto">
+                  Try the AI Agent
+                </Button>
+              </AIAgentDialog>
             </div>
           </div>
           

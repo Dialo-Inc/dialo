@@ -213,7 +213,7 @@ const ParagonHondaPreSaleSection = () => {
               <div className="text-center">
                 <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 sm:p-6 border border-primary-foreground/20 mb-4">
                   <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-1 sm:mb-2">Start Today</div>
-                  <div className="text-sm sm:text-base text-primary-foreground/80">Full implementation in 14 days</div>
+                  <div className="text-sm sm:text-base text-primary-foreground/80">Full implementation after opt in</div>
                 </div>
               </div>
             </CardContent>

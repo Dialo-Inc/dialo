@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Play } from 'lucide-react';
 import { AIVoiceInput } from '@/components/ui/ai-voice-input';
+import { AIAgentDialog } from '@/components/ui/ai-agent-dialog';
 
 const ParagonHondaHeroSection = () => {
   return (
@@ -32,10 +33,11 @@ const ParagonHondaHeroSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0">
-              <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg font-semibold btn-premium shadow-premium-lg w-full sm:w-auto">
-                <span className="hidden sm:inline">Engage the AI Agent Now</span>
-                <span className="sm:hidden">Engage AI Agent</span>
-              </Button>
+              <AIAgentDialog assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID || "e2e9e24a-87de-416c-a55d-89aff7ac1fff"}>
+                <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg font-semibold btn-premium shadow-premium-lg w-full sm:w-auto">
+                  Try the AI Agent
+                </Button>
+              </AIAgentDialog>
               <Button variant="outline" size="lg" className="border-border bg-background hover:bg-secondary px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg group w-full sm:w-auto">
                 <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Watch Demo
@@ -65,7 +67,7 @@ const ParagonHondaHeroSection = () => {
                     demoMode={false} 
                     visualizerBars={24} 
                     className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
-                    assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID || "paragon-honda-agent"} 
+                    assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID || "e2e9e24a-87de-416c-a55d-89aff7ac1fff"} 
                     onStart={() => console.log('Paragon Honda voice demo started')} 
                     onStop={duration => console.log('Paragon Honda voice demo ended, duration:', duration)} 
                   />

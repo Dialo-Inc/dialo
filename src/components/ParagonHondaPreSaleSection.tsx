@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { AIAgentDialog } from '@/components/ui/ai-agent-dialog';
 import { ArrowRight, Building, Users, Zap, Clock, CheckCircle } from 'lucide-react';
 const ParagonHondaPreSaleSection = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -123,12 +124,14 @@ const ParagonHondaPreSaleSection = () => {
         
         {/* Final CTA */}
         <div className="text-center">
-          <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground px-8 lg:px-12 py-6 lg:py-8 text-lg lg:text-xl font-bold shadow-premium-lg hover:shadow-premium-xl transition-all duration-300 hover:scale-105">
-            See the AI Agent in Action
-            <ArrowRight className="w-6 h-6 ml-4" />
-          </Button>
+          <AIAgentDialog assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID}>
+            <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground px-6 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 text-base sm:text-lg lg:text-xl font-bold shadow-premium-lg hover:shadow-premium-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto">
+              See the AI Agent in Action
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-3 sm:ml-4" />
+            </Button>
+          </AIAgentDialog>
           
-          <p className="text-sm sm:text-base text-primary-foreground/70 mt-6 max-w-2xl mx-auto leading-relaxed px-2 mb-16">
+          <p className="text-sm sm:text-base text-primary-foreground/70 mt-4 sm:mt-6 max-w-2xl mx-auto leading-relaxed px-2 mb-12 sm:mb-16">
             Transform your dealership communication today. Your customers are waiting, and your competitors are planning.
           </p>
         </div>

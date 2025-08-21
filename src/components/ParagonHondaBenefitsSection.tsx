@@ -41,15 +41,15 @@ const ParagonHondaBenefitsSection = () => {
             <Card key={index} className="group bg-card/50 backdrop-blur-sm border-border/50 shadow-premium-md hover:shadow-premium-xl transition-all duration-500 hover:scale-105 hover:bg-card relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-accent/20 rounded-bl-3xl opacity-50"></div>
-              <CardHeader className="text-center pb-6 relative">
-                <div className="w-20 h-20 bg-gradient-accent rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 shadow-premium-sm">
-                  <benefit.icon className="w-10 h-10 text-accent-foreground" />
+              <CardHeader className="text-center pb-4 sm:pb-6 relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-accent rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-500 shadow-premium-sm">
+                  <benefit.icon className="w-8 h-8 sm:w-10 sm:h-10 text-accent-foreground" />
                 </div>
-                <div className="text-4xl font-bold text-accent mb-4 group-hover:scale-105 transition-transform duration-500">{benefit.metric}</div>
-                <CardTitle className="text-lg text-foreground group-hover:text-foreground transition-colors duration-500">{benefit.title}</CardTitle>
+                <div className="text-3xl sm:text-4xl font-bold text-accent mb-3 sm:mb-4 group-hover:scale-105 transition-transform duration-500">{benefit.metric}</div>
+                <CardTitle className="text-base sm:text-lg text-foreground group-hover:text-foreground transition-colors duration-500 px-2">{benefit.title}</CardTitle>
               </CardHeader>
-              <CardContent className="relative">
-                <p className="text-muted-foreground leading-relaxed text-center">{benefit.description}</p>
+              <CardContent className="relative mobile-card-padding">
+                <p className="text-muted-foreground leading-relaxed text-center mobile-text">{benefit.description}</p>
               </CardContent>
             </Card>
           ))}

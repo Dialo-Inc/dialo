@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { AIAgentDialog } from '@/components/ui/ai-agent-dialog';
 import { Menu, X, Users, Mic } from 'lucide-react';
 import { useState } from 'react';
 const Header = () => {
@@ -31,8 +32,9 @@ const Header = () => {
           </nav>
           
           <div className="hidden lg:flex items-center space-x-4">
-            
-            <Button className="bg-accent hover:bg-accent-hover text-accent-foreground btn-premium shadow-premium-md">Try the Agent</Button>
+            <AIAgentDialog assistantId={import.meta.env.VITE_PARAGON_HONDA_ASSISTANT_ID}>
+              <Button className="bg-accent hover:bg-accent-hover text-accent-foreground btn-premium shadow-premium-md">Try the Agent</Button>
+            </AIAgentDialog>
           </div>
           
           <button className="lg:hidden p-2 text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>

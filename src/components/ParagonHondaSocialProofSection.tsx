@@ -23,7 +23,7 @@ const ParagonHondaSocialProofSection = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-accent rounded-t-lg"></div>
             <CardContent className="mobile-card-padding text-center relative">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-accent rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-premium-md">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-accent rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-premium-md mt-4">
                 <MessageCircle className="w-10 h-10 sm:w-12 sm:h-12 text-accent-foreground" />
               </div>
               

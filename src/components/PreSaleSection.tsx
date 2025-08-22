@@ -57,13 +57,10 @@ const PreSaleSection = () => {
           </Badge>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 sm:mb-8">
-            Secure Your Future at <span className="text-accent">70% Off</span>
+            Secure Your Future at <span className="text-accent">100% Off</span>
           </h2>
           
-          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-primary-foreground/80 max-w-5xl mx-auto leading-relaxed px-2">
-            This is your exclusive opportunity to get lifetime access to Dialo 
-            at an unprecedented 70% discount. Help us validate demand and fund initial development.
-          </p>
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-primary-foreground/80 max-w-5xl mx-auto leading-relaxed px-2">This is your exclusive opportunity to get access to Dialo for free. </p>
         </div>
         
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start mb-12 sm:mb-16 lg:mb-20">
@@ -107,20 +104,18 @@ const PreSaleSection = () => {
               
               <div className="text-center space-y-4 sm:space-y-6">
                 <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 sm:p-6 border border-primary-foreground/20">
-                  <div className="text-sm sm:text-base text-primary-foreground/60 line-through mb-1 sm:mb-2">Regular Price: $3,000/month</div>
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-1 sm:mb-2">Pre-Sale: $900/month</div>
-                  <div className="text-sm sm:text-base text-primary-foreground/80">Lifetime price lock guaranteed</div>
+                  
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-1 sm:mb-2">Free Trial</div>
+                  <div className="text-sm sm:text-base text-primary-foreground/80">Lifetime value lock guaranteed</div>
                 </div>
                 
                 <Button size="lg" className="w-full bg-accent hover:bg-accent-hover text-accent-foreground text-sm sm:text-base lg:text-lg py-4 sm:py-5 lg:py-6 font-semibold shadow-premium-lg hover:shadow-premium-xl transition-all duration-300 hover:scale-105">
-                  <span className="hidden sm:inline">Lock in Your 70% Discount Now</span>
+                  <span className="hidden sm:inline">Lock in Your Free Trial Now</span>
                   <span className="sm:hidden">Get 70% Discount</span>
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3" />
                 </Button>
                 
-                <p className="text-xs sm:text-sm text-primary-foreground/70 leading-relaxed px-2">
-                  By pre-ordering now, you're becoming a foundational partner in shaping the future of automotive communication.
-                </p>
+                <p className="text-xs sm:text-sm text-primary-foreground/70 leading-relaxed px-2">By trying now, you're becoming a foundational partner in shaping the future of automotive communication.</p>
               </div>
             </CardContent>
           </Card>
@@ -130,7 +125,7 @@ const PreSaleSection = () => {
           <div className="inline-flex items-center gap-2 sm:gap-4 bg-primary-foreground/10 backdrop-blur-sm rounded-full px-4 sm:px-6 lg:px-8 py-3 sm:py-4 border border-primary-foreground/20 shadow-premium-sm">
             <Users className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-accent flex-shrink-0" />
             <span className="text-sm sm:text-base lg:text-lg">
-              <strong className="text-accent">Limited to first 20 customers</strong> for personalized onboarding
+              <strong className="text-accent">Limited spot</strong> for personalized onboarding
             </span>
           </div>
         </div>

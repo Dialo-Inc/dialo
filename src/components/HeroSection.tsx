@@ -38,14 +38,14 @@ const HeroSection = () => {
               <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Dialo seamlessly integrates to boost sales, enhance CSI, and cut costs. 
                 Pre-order now for a{' '}
-                <strong className="text-accent font-semibold">lifetime 70% discount</strong>{' '}
+                <strong className="text-accent font-semibold"> 100% discount</strong>{' '}
                 and join the future of automotive communication.
               </p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-2 sm:px-0">
               <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg font-semibold btn-premium shadow-premium-lg w-full sm:w-auto">
-                <span className="hidden sm:inline">Secure Your 70% Lifetime Discount Now</span>
+                <span className="hidden sm:inline">Secure Your 100% Lifetime Discount Now</span>
                 <span className="sm:hidden">Get 70% Discount Now</span>
               </Button>
               <AIAgentDialog assistantId={import.meta.env.VITE_GENERAL_ASSISTANT_ID || "demo-dealership-agent"}>
@@ -74,14 +74,7 @@ const HeroSection = () => {
                 
                 {/* AI Voice Input Component */}
                 <div className="flex-1 flex items-center justify-center">
-                  <AIVoiceInput 
-                    demoMode={false} 
-                    visualizerBars={24} 
-                    className="text-foreground scale-75 sm:scale-90 lg:scale-100" 
-                    assistantId={import.meta.env.VITE_GENERAL_ASSISTANT_ID || "demo-dealership-agent"} 
-                    onStart={() => console.log('General voice demo started')} 
-                    onStop={duration => console.log('General voice demo ended, duration:', duration)} 
-                  />
+                  <AIVoiceInput demoMode={false} visualizerBars={24} className="text-foreground scale-75 sm:scale-90 lg:scale-100" assistantId={import.meta.env.VITE_GENERAL_ASSISTANT_ID || "demo-dealership-agent"} onStart={() => console.log('General voice demo started')} onStop={duration => console.log('General voice demo ended, duration:', duration)} />
                 </div>
               </div>
               

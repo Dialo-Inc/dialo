@@ -53,9 +53,7 @@ const Footer = () => {
         <div className="mt-12 sm:mt-16 text-center">
           <div className="inline-flex items-center gap-3 bg-primary-foreground/10 backdrop-blur-sm rounded-full px-6 sm:px-8 py-3 sm:py-4 border border-primary-foreground/20 shadow-premium-sm">
             <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
-            <span className="text-primary-foreground">
-              Pre-sale is live - Limited spots remaining
-            </span>
+            <span className="text-primary-foreground">Free Trial is live - Limited spots remaining</span>
           </div>
         </div>
       </div>
